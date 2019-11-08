@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EnterActivity">
+
+    <TextView
+        android:id="@+id/enterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30sp"
+        android:text="환영합니다!"
+        android:fontFamily="@font/nanumgothicbold"
+        android:textColor="#646464"
+        android:layout_marginTop="231dp"/>
+
+    <TextView
+        android:id="@+id/enterDoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/enterTitle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="인공지능 음악 심리 치료 E.V와 함께하세요"
+        android:textSize="8.5sp"
+        android:fontFamily="@font/nanumgothiclight"
+        android:textColor="#646464"
+        android:layout_marginTop="4dp"/>
+
+    <Button
+        android:id="@+id/enterButton"
+        android:layout_width="148dp"
+        android:layout_height="36dp"
+        android:background="@drawable/login_gradient"
+        app:layout_constraintTop_toBottomOf="@+id/enterDoc"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="로그인 화면으로 가기"
+        android:textSize="12sp"
+        android:textColor="#fff"
+        android:fontFamily="@font/nanumgothic"/>
+
+    <ImageView
+        android:layout_width="148dp"
+        android:layout_height="36dp"
+        android:background="@drawable/logo_glow"
+        app:layout_constraintTop_toBottomOf="@+id/enterDoc"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/enter_shape"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

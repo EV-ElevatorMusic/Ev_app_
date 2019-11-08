@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="177dp"
+        android:layout_height="45dp"
+        android:background="@drawable/music_chat"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:src="@drawable/music_shadow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="13dp"/>
+        
+        <ImageView
+            android:id="@+id/cMusicImg"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:src="@drawable/music_round"/>
+
+        <TextView
+            android:id="@+id/cMusicTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아픈 길"
+            android:fontFamily="@font/nanumgothicbold"
+            android:textSize="9dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/cMusicImg"
+            android:textColor="#646464"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DAY6(데이식스)"
+            android:textSize="6dp"
+            android:textColor="#646464"
+            android:fontFamily="@font/nanumgothiclight"
+            app:layout_constraintTop_toBottomOf="@+id/cMusicTitle"
+            app:layout_constraintLeft_toRightOf="@+id/cMusicImg"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"/>
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/start_shadow" />
+        
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:src="@drawable/music_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="16dp" />
+
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
