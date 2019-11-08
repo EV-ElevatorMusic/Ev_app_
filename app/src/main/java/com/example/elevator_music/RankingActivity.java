@@ -20,7 +20,11 @@ import java.util.ArrayList;
 public class RankingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     RecyclerView.Adapter adapterHappy;
-    ArrayList<String> rankingUrl = new ArrayList<>();
+    RecyclerView.Adapter adapterSad;
+    RecyclerView.Adapter adapterMad;
+    ArrayList<String> rankingHappyUrl = new ArrayList<>();
+    ArrayList<String> rankingSadUrl = new ArrayList<>();
+    ArrayList<String> rankingMadUrl = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +36,23 @@ public class RankingActivity extends AppCompatActivity implements NavigationView
         rvHappy = findViewById(R.id.musicHappy);
         rvMad = findViewById(R.id.musicMad);
         rvSad = findViewById(R.id.musicSad);
-        rankingUrl.add("https://youtu.be/AFSs7MKtpOU");
-        adapterHappy = new RankingHappyAdapter(rankingUrl, getApplicationContext());
-        rvHappy.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rankingSadUrl.add("https://youtu.be/bIB8EWqCPrQ");
+        rankingSadUrl.add("https://youtu.be/_4ebvRDKG7I");
+        rankingSadUrl.add("https://youtu.be/_Arh7zOl2fk");
+        rankingSadUrl.add("https://youtu.be/sohFdOgOr_0");
+        rankingSadUrl.add("https://youtu.be/hbF7j3ZHOrA");
+        rankingHappyUrl.add("https://youtu.be/6vqT0LoiCKM");
+        rankingHappyUrl.add("https://youtu.be/BizBCm3W4Ok");
+        adapterHappy = new RankingHappyAdapter(rankingHappyUrl, getApplicationContext());
+        rvHappy.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvHappy.setAdapter(adapterHappy);
+        adapterMad = new RankingMadAdapter(rankingMadUrl, getApplicationContext());
+        rvMad.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvMad.setAdapter(adapterMad);
+        adapterSad = new RankingSadAdapter(rankingSadUrl, getApplicationContext());
+        rvSad.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvSad.setAdapter(adapterSad);
+
 
 
         //NavigationView navigationView = findViewById(R.id.nav_view2);
