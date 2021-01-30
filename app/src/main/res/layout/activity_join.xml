@@ -148,7 +148,20 @@
         android:hint="비밀번호를 한 번 더 입력하세요"
         android:textSize="10sp"
         android:paddingLeft="16dp"
-        android:fontFamily="@font/nanumgothic"/>
+        android:fontFamily="@font/nanumgothic"/>\
+
+    <Button
+        android:id="@+id/join_request_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="확인"
+        android:fontFamily="@font/nanumgothic"
+        android:layout_marginBottom="32dp"
+        android:layout_marginRight="16dp"
+        android:background="#fff"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
