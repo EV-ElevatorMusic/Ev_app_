@@ -20,24 +20,6 @@
         android:textSize="11sp"/>
 
 
-    <ImageView
-        android:layout_width="36dp"
-        android:layout_height="41dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="93dp"
-        android:background="@drawable/join_glow"/>
-
-    <ImageView
-        android:id="@+id/joinImage"
-        android:layout_width="36dp"
-        android:layout_height="41dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="93dp"
-        android:background="@drawable/join_logo"/>
 
     <TextView
         android:id="@+id/joinText"
@@ -47,10 +29,10 @@
         android:fontFamily="@font/nanumgothicbold"
         android:textSize="30sp"
         android:textColor="#646464"
-        app:layout_constraintTop_toBottomOf="@+id/joinImage"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="84dp"/>
 
     <TextView
         android:id="@+id/nameText"
@@ -168,18 +150,5 @@
         android:paddingLeft="16dp"
         android:fontFamily="@font/nanumgothic"/>
 
-    <TextView
-        android:id="@+id/joinEnter"
-        android:layout_width="97dp"
-        android:layout_height="37dp"
-        android:text="Sign up"
-        android:textColor="#fcfcfc"
-        android:gravity="center"
-        android:textSize="11sp"
-        android:fontFamily="@font/nanumgothicbold"
-        android:background="@drawable/login_gradient"
-        app:layout_constraintTop_toBottomOf="@+id/joinCheck"
-        app:layout_constraintRight_toRightOf="@+id/joinCheck"
-        android:layout_marginTop="30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
