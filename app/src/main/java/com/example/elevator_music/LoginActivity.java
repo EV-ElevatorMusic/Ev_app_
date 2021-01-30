@@ -175,6 +175,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View v) {
                 final OAuthProvider.Builder provider = OAuthProvider.newBuilder("github.com");
+                Log.e("nullcheck", "onClick: "+provider.build() );
                 provider.addCustomParameter("login", "your-email@gmail.com");
                 List<String> scopes =
                         new ArrayList<String>() {
@@ -338,8 +339,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         intent.putExtra("email", auth.getCurrentUser().getEmail());
         intent.putExtra("name", name);
         intent.putExtra("userId", userId);
-        Log.e("Login", "LoginIntent: wqeqweqwd" );
         startActivity(intent);
+        finish();
     }
 
 }

@@ -148,7 +148,7 @@
         android:hint="비밀번호를 한 번 더 입력하세요"
         android:textSize="10sp"
         android:paddingLeft="16dp"
-        android:fontFamily="@font/nanumgothic"/>\
+        android:fontFamily="@font/nanumgothic"/>
 
     <Button
         android:id="@+id/join_request_button"
