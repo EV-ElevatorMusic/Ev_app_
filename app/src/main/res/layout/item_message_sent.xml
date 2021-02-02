@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/chat_send"
         android:text="I agree"
-        android:textColor="#656565"
+        android:textColor="#ffffff"
         android:fontFamily="@font/nanumgothic"
         android:textSize="10sp"
         android:paddingLeft="12dp"
