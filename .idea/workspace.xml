@@ -41,16 +41,29 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36cf3c29-4622-4e0b-b657-cd62122739e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+    <list default="true" id="36cf3c29-4622-4e0b-b657-cd62122739e6" name="Default Changelist" comment="git ignore 추가">
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/elevator_music/MainActivityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Elevator_Music.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Elevator_Music.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/data.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/model.tflite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elevator_music/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elevator_music/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/elevator_music/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +74,7 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_4_XL_API_27]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -98,10 +111,17 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit3 Test Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="register" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -114,10 +134,24 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/androidTest/java/com/example/elevator_music" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDK Location" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.elevator_music" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
+    </key>
   </component>
   <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -184,6 +218,57 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="testOnCreate()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+      <module name="Elevator_Music.app" />
+      <option name="TESTING_TYPE" value="3" />
+      <option name="METHOD_NAME" value="testOnCreate" />
+      <option name="CLASS_NAME" value="com.example.elevator_music.MainActivityTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="INCLUDE_GRADLE_EXTRA_OPTIONS" value="true" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Ev_app_ [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -205,6 +290,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android Instrumented Tests.testOnCreate()" />
         <item itemvalue="Gradle.Ev_app_ [signingReport]" />
       </list>
     </recent_temporary>
@@ -241,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612008579499</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="git ignore 추가">
+      <created>1612931644859</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1612931644859</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,29 +364,42 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="UI 수정" />
     <MESSAGE value="런처 여러개에서 하나로 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="런처 여러개에서 하나로 수정" />
+    <MESSAGE value="git ignore 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="git ignore 추가" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="477" y="266" key="#PSD" timestamp="1612931773279">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="477" y="266" key="#PSD/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931773279" />
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1612935154651">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612935154651" />
     <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1612007336941">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612007336941" />
-    <state width="1860" height="214" key="GridCell.Tab.0.bottom" timestamp="1612931369632">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1612932045056">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="214" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931369632" />
-    <state width="1860" height="214" key="GridCell.Tab.0.center" timestamp="1612931369632">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612932045056" />
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom" timestamp="1612942486409">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="214" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931369632" />
-    <state width="1860" height="214" key="GridCell.Tab.0.left" timestamp="1612931369632">
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612942486409" />
+    <state width="1877" height="274" key="GridCell.Tab.0.center" timestamp="1612942486409">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="214" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931369632" />
-    <state width="1860" height="214" key="GridCell.Tab.0.right" timestamp="1612931369632">
+    <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612942486409" />
+    <state width="1877" height="274" key="GridCell.Tab.0.left" timestamp="1612942486409">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="214" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931369632" />
+    <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612942486409" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right" timestamp="1612942486409">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612942486409" />
     <state x="184" y="86" key="MergeDialog" timestamp="1612931277466">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -302,14 +408,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="581" y="273" key="MultipleFileMergeDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931296352" />
-    <state x="552" y="249" key="Vcs.Push.Dialog.v2" timestamp="1612008942133">
+    <state x="461" y="164" key="SettingsEditor" timestamp="1612931756521">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="249" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612008942133" />
-    <state x="763" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1612008847221">
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931756521" />
+    <state x="552" y="249" key="Vcs.Push.Dialog.v2" timestamp="1612931656715">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="763" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612008847221" />
+    <state x="552" y="249" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931656715" />
+    <state x="754" y="297" key="chooseDestDirectoryDialog" timestamp="1612936015872">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="754" y="297" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612936015872" />
+    <state x="763" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1612936031594">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="763" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612936031594" />
+    <state x="731" y="173" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1612936015893">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="731" y="173" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612936015893" />
     <state x="0" y="150" key="git4idea.branch.GitSmartOperationDialog" timestamp="1612931236357">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -330,6 +448,11 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/elevator_music/LoginActivity.java</url>
           <line>145</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/elevator_music/MainActivity.java</url>
+          <line>128</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
