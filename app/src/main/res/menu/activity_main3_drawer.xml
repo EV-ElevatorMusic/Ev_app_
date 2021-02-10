@@ -6,12 +6,10 @@
 
     <group android:checkableBehavior="single">
         <item android:title="MAEUM 음악 추천"
-            android:icon="@drawable/nav_chat"
             android:id="@+id/chatting"
             app:showAsAction="ifRoom"/>
 
         <item android:id="@+id/mRanking"
-            android:icon="@drawable/nav_ranking"
             android:title="음악 랭킹"
             app:showAsAction="ifRoom"/>
     </group>

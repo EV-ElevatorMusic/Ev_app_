@@ -70,25 +70,37 @@
                 android:id="@+id/chatEdit"
                 android:background="@drawable/send_shape"
                 android:layout_gravity="center"
-                android:layout_width="320dp"
+                android:layout_width="0dp"
+                android:layout_weight="7"
                 android:layout_height="31dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="6dp"
-                android:layout_marginLeft="18dp"
-                android:layout_marginRight="12dp" />
-
-            <TextView
-                android:id="@+id/chatSend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="보내기"
-                android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginRight="15dp"
-                android:fontFamily="@font/nanumgothicbold"
-                android:textColor="#f4a505"
-                android:textSize="15sp"/>
+                android:layout_marginLeft="16dp"/>
+
+<!--            <TextView-->
+<!--                android:id="@+id/chatSend"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:clickable="true"-->
+<!--                android:text="보내기"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:layout_marginRight="15dp"-->
+<!--                android:fontFamily="@font/nanumgothicbold"-->
+<!--                android:textColor="#f4a505"-->
+<!--                android:textSize="15sp"/>-->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+                <ImageButton
+                    android:id="@+id/chatSend"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/send"/>
+            </LinearLayout>
 
         </LinearLayout>
 
