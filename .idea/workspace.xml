@@ -41,13 +41,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36cf3c29-4622-4e0b-b657-cd62122739e6" name="Default Changelist" comment="런처 여러개에서 하나로 수정">
+    <list default="true" id="36cf3c29-4622-4e0b-b657-cd62122739e6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elevator_music/JoinActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elevator_music/JoinActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,22 +278,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612007336941" />
-    <state width="1860" height="272" key="GridCell.Tab.0.bottom" timestamp="1612930759297">
+    <state width="1860" height="214" key="GridCell.Tab.0.bottom" timestamp="1612931369632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="272" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612930759297" />
-    <state width="1860" height="272" key="GridCell.Tab.0.center" timestamp="1612930759297">
+    <state width="1860" height="214" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931369632" />
+    <state width="1860" height="214" key="GridCell.Tab.0.center" timestamp="1612931369632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="272" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612930759297" />
-    <state width="1860" height="272" key="GridCell.Tab.0.left" timestamp="1612930759297">
+    <state width="1860" height="214" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931369632" />
+    <state width="1860" height="214" key="GridCell.Tab.0.left" timestamp="1612931369632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="272" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612930759297" />
-    <state width="1860" height="272" key="GridCell.Tab.0.right" timestamp="1612930759297">
+    <state width="1860" height="214" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931369632" />
+    <state width="1860" height="214" key="GridCell.Tab.0.right" timestamp="1612931369632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="272" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612930759297" />
+    <state width="1860" height="214" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931369632" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1612931277466">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931277466" />
+    <state x="581" y="273" key="MultipleFileMergeDialog" timestamp="1612931296352">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="581" y="273" key="MultipleFileMergeDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931296352" />
     <state x="552" y="249" key="Vcs.Push.Dialog.v2" timestamp="1612008942133">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -299,10 +310,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="763" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612008847221" />
-    <state x="0" y="150" key="git4idea.branch.GitSmartOperationDialog" timestamp="1612009873081">
+    <state x="0" y="150" key="git4idea.branch.GitSmartOperationDialog" timestamp="1612931236357">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="0" y="150" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612009873081" />
+    <state x="0" y="150" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/-1920.-81.1920.1040@0.0.1920.1040" timestamp="1612931236357" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
