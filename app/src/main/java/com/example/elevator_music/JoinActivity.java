@@ -3,6 +3,7 @@ package com.example.elevator_music;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,6 +58,9 @@ public class JoinActivity extends AppCompatActivity {
                                             currentUser = auth.getCurrentUser();
                                             UserProfileChangeRequest request = new UserProfileChangeRequest.Builder().setDisplayName(et_name.getText().toString()).build();
                                             currentUser.updateProfile(request);
+                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
                                         } else {
                                             Log.e("SignUp", "Failure", task.getException());
                                             Toast.makeText(JoinActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
