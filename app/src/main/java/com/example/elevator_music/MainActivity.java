@@ -262,17 +262,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         protected void onPostExecute(String result) {
             // 통신이 완료되면 호출됩니다.
             // 결과에 따른 UI 수정 등은 여기서 합니다.
-            JsonParser parser = new JsonParser();
-            Object object = parser.parse(result);
-            JsonObject jsonObject = (JsonObject)object;
-            String comment = jsonObject.get("chat")+"";
-            String text = chatEdit.getText().toString();
-            chatItems.add(new ChatItem(0, text));
-            adapter.notifyDataSetChanged();
-            chatEdit.setText("");
-            chatItems.add(new ChatItem(1, comment));
-            adapter.notifyDataSetChanged();
-
+            if(result!=null){
+                JsonParser parser = new JsonParser();
+                Object object = parser.parse(result);
+                JsonObject jsonObject = (JsonObject)object;
+                String comment = jsonObject.get("chat")+"";
+                String text = chatEdit.getText().toString();
+                chatItems.add(new ChatItem(0, text));
+                adapter.notifyDataSetChanged();
+                chatEdit.setText("");
+                chatItems.add(new ChatItem(1, comment));
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 
