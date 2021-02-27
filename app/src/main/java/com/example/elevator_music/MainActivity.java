@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         chatEdit = findViewById(R.id.chatEdit);
         chatSend = findViewById(R.id.chatSend);
         rv = findViewById(R.id.recyclerChat);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         adapter = new ChattingRecyclerAdapter(chatItems);
