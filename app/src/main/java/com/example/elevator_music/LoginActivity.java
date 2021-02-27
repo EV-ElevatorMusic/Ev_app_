@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     AccessToken accessToken;
     private static final int RC_SIGN_IN = 100;
-    static String name, userId, email;
+    public static String name, userId, email;
     Button loginText;
     EditText et_id, et_password;
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -336,9 +336,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
     public void LoginIntent(){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Log.e("tag", "LoginIntent: "+auth.getCurrentUser().getDisplayName() );
         intent.putExtra("email", auth.getCurrentUser().getEmail());
-        intent.putExtra("name", name);
-        intent.putExtra("userId", userId);
+        intent.putExtra("name", auth.getCurrentUser().getDisplayName());
+        intent.putExtra("userId", auth.getCurrentUser().getUid());
         startActivity(intent);
         finish();
     }

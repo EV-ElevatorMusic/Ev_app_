@@ -25,6 +25,7 @@ import android.content.res.AssetFileDescriptor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -70,31 +71,46 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     EditText chatEdit;
-    ImageButton chatSend;
-    String all_input, emotion;
+    ImageButton chatSend, openDrawer;
+    String all_input;
     RecyclerView.Adapter adapter;
     RecyclerView rv;
-    final List<String> they = new ArrayList<>();
     ArrayList<ChatItem> chatItems = new ArrayList<>();
-    String output;
+    TextView userNameTv, userEmailTv;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        drawer = findViewById(R.id.drawer_layout);
         chatEdit = findViewById(R.id.chatEdit);
         chatSend = findViewById(R.id.chatSend);
         rv = findViewById(R.id.recyclerChat);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        openDrawer = findViewById(R.id.open_drawer);
+
         adapter = new ChattingRecyclerAdapter(chatItems);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-//        set_they();
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        userEmailTv = nav_header_view.findViewById(R.id.drawer_user_email);
+        userNameTv = nav_header_view.findViewById(R.id.drawer_user_name);
+
+        Intent intent = getIntent();
+        userNameTv.setText(intent.getStringExtra("name"));
+        userEmailTv.setText(intent.getStringExtra("email"));
+
+        openDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.END);
+            }
+        });
+
         chatEdit.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -155,8 +171,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Intent intent;
 
-        if (id == R.id.chatting) {
-            intent = new Intent(this, MainActivity.class);
+        if (id == R.id.setting) {
+            intent = new Intent(this, SettingActivity.class);
             startActivity(intent);
         } else if (id == R.id.mRanking) {
             intent = new Intent(this, RankingActivity.class);

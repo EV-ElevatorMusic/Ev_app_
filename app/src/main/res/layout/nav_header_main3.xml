@@ -25,6 +25,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/drawer_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="김뫄뫄"
@@ -33,6 +34,7 @@
             android:textColor="#646464" />
 
         <TextView
+            android:id="@+id/drawer_user_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="example01@gmail.com"
