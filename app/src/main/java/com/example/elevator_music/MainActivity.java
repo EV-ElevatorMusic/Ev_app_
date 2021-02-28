@@ -72,11 +72,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     EditText chatEdit;
     ImageButton chatSend, openDrawer;
-    String all_input;
+    String all_input, name, email;
     RecyclerView.Adapter adapter;
     RecyclerView rv;
     ArrayList<ChatItem> chatItems = new ArrayList<>();
     TextView userNameTv, userEmailTv;
+
 
 
     @Override
@@ -101,8 +102,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userNameTv = nav_header_view.findViewById(R.id.drawer_user_name);
 
         Intent intent = getIntent();
-        userNameTv.setText(intent.getStringExtra("name"));
-        userEmailTv.setText(intent.getStringExtra("email"));
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
+        userNameTv.setText(name);
+        userEmailTv.setText(email);
 
         openDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,12 +176,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.setting) {
             intent = new Intent(this, SettingActivity.class);
-            startActivity(intent);
+            startDrawerIntent(intent);
         } else if (id == R.id.mRanking) {
             intent = new Intent(this, RankingActivity.class);
             startActivity(intent);
         }
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
@@ -293,6 +295,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    void startDrawerIntent(Intent intent){
+        intent.putExtra("name", name);
+        intent.putExtra("email", email);
+        startActivity(intent);
+    }
 
 
 
