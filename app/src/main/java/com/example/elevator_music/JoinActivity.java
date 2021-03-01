@@ -3,6 +3,7 @@ package com.example.elevator_music;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +25,7 @@ public class JoinActivity extends AppCompatActivity {
     FirebaseUser currentUser;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     EditText et_id, et_password, et_pwdCheck, et_name;
-    TextView signUp;
+    Button signUp;
     String p ="[\\w~\\-.]+@[\\w~\\-]+(\\.[\\w~\\-]+)+";
     final String TAG = "signUp";
 
@@ -35,7 +36,7 @@ public class JoinActivity extends AppCompatActivity {
         et_id = findViewById(R.id.joinId);
         et_password = findViewById(R.id.joinPwd);
         et_pwdCheck = findViewById(R.id.joinCheck);
-        signUp = findViewById(R.id.joinEnter);
+        signUp = findViewById(R.id.join_request_button);
         et_name = findViewById(R.id.joinName);
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,9 @@ public class JoinActivity extends AppCompatActivity {
                                             currentUser = auth.getCurrentUser();
                                             UserProfileChangeRequest request = new UserProfileChangeRequest.Builder().setDisplayName(et_name.getText().toString()).build();
                                             currentUser.updateProfile(request);
+                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
                                         } else {
                                             Log.e("SignUp", "Failure", task.getException());
                                             Toast.makeText(JoinActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();

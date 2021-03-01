@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/menu"
-        android:icon="@drawable/tool_menu"
-        app:showAsAction="ifRoom"
-        android:title="menu"/>
+        android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+        android:title="menu"
+        app:showAsAction="ifRoom" />
 
 </menu>
