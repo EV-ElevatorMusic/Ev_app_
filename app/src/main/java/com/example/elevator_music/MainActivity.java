@@ -122,7 +122,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (!chatEdit.getText().toString().equals("")) {
                         String text = chatEdit.getText().toString();
                         all_input = all_input + text;
-                        NetworkTask networkTask = new NetworkTask("http://13.124.31.235/", all_input);
+
+                        String _uri = "/chatbot/?comment=" + all_input;
+
+                        NetworkTask networkTask = new NetworkTask("http://13.124.31.235/", _uri);
                         networkTask.execute();
                         return true;
                     }
@@ -137,7 +140,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 String text = chatEdit.getText().toString();
                 all_input = all_input + text;
-                NetworkTask networkTask = new NetworkTask("http://13.124.31.235/", all_input);
+
+                String _uri = "/chatbot/?comment=" + all_input;
+
+                NetworkTask networkTask = new NetworkTask("http://13.124.31.235/", _uri);
                 networkTask.execute();
             }
         });
@@ -189,18 +195,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public class RequestHttpURLConnection {
 
-        public String request(String _url, String _comment) {
+        public String request(String _url, String _uri) {
 
             HttpURLConnection urlConn = null;
 
             // URL 뒤에 붙여서 보낼 파라미터.
-            _url += "/chatbot/?comment=" + _comment;
-
-            /**
-             * 1. StringBuffer에 파라미터 연결
-             * */
-            // 보낼 데이터가 없으면 파라미터를 비운다.
-                // 보낼 데이터가 있으면 파라미터를 채운다.
+            _url += _uri;
 
             /**
              * 2. HttpURLConnection을 통해 web의 데이터를 가져온다.
