@@ -123,6 +123,7 @@
                     android:layout_marginEnd="16dp">
 
                     <ImageButton
+                        android:layout_marginStart="8dp"
                         android:id="@+id/chatSend"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
