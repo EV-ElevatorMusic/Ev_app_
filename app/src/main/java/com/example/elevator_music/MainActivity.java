@@ -274,12 +274,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 JsonParser parser = new JsonParser();
                 Object object = parser.parse(result);
                 JsonObject jsonObject = (JsonObject)object;
-                String comment = jsonObject.get("chat")+"";
-                String text = chatEdit.getText().toString();
-                chatItems.add(new ChatItem(0, text));
-                adapter.notifyDataSetChanged();
-                chatEdit.setText("");
-                chatItems.add(new ChatItem(1, comment));
+                if (isLifeChat){
+                    String artist_name = jsonObject.get("artist_name")+"";
+                    String cover_img = jsonObject.get("cover_img")+"";
+                    String music_name = jsonObject.get("music_name")+"";
+                    String preview_url = jsonObject.get("preview_url")+"";
+                    chatItems.add(new ChatItem(2, artist_name, cover_img, music_name, preview_url));
+                }else{
+                    String comment = jsonObject.get("chat")+"";
+                    String text = chatEdit.getText().toString();
+                    Log.e("tag", "onPostExecute: "+ jsonObject );
+                    chatItems.add(new ChatItem(0, text));
+                    adapter.notifyDataSetChanged();
+                    chatEdit.setText("");
+                    chatItems.add(new ChatItem(1, comment));
+                }
                 adapter.notifyDataSetChanged();
             }
         }
