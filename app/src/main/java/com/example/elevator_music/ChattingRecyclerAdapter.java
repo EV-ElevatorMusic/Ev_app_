@@ -1,21 +1,30 @@
 package com.example.elevator_music;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 public class ChattingRecyclerAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    public ChattingRecyclerAdapter(ArrayList<ChatItem> chatItems) {
+    public ChattingRecyclerAdapter(ArrayList<ChatItem> chatItems, Context context) {
         this.chatItems = chatItems;
+        this.context = context;
     }
-
+    Context context;
     ArrayList<ChatItem> chatItems;
     class ViewHolder0 extends RecyclerView.ViewHolder{
         TextView sentBody;
@@ -32,6 +41,16 @@ public class ChattingRecyclerAdapter extends  RecyclerView.Adapter<RecyclerView.
             receivedBody=itemView.findViewById(R.id.receiveBody);
         }
     }
+    class ViewHolder2 extends RecyclerView.ViewHolder{
+        TextView cMusicTitle, cMusicArtist;
+        ImageView cMusicImg;
+        ViewHolder2(@NonNull View itemView) {
+            super(itemView);
+            cMusicTitle = itemView.findViewById(R.id.cMusicTitle);
+            cMusicArtist = itemView.findViewById(R.id.cMusicArtist);
+            cMusicImg = itemView.findViewById(R.id.cMusicImg);
+        }
+    }
 
     @NonNull
     @Override
@@ -40,9 +59,13 @@ public class ChattingRecyclerAdapter extends  RecyclerView.Adapter<RecyclerView.
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_sent, parent, false);
             return new ViewHolder0(v);
         }
-        else{
+        else if(viewType == 1){
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_received, parent, false);
             return new ViewHolder1(v);
+        }
+        else{
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_music, parent, false);
+            return new ViewHolder2(v);
         }
     }
 
@@ -52,9 +75,16 @@ public class ChattingRecyclerAdapter extends  RecyclerView.Adapter<RecyclerView.
             ViewHolder0 viewHolder0 = (ViewHolder0)holder;
             viewHolder0.sentBody.setText(chatItems.get(position).text);
         }
-        else{
+        else if (holder.getItemViewType() == 1){
             ViewHolder1 viewHolder1 = (ViewHolder1)holder;
             viewHolder1.receivedBody.setText(chatItems.get(position).text);
+        }
+        else {
+            ViewHolder2 viewHolder2 = (ViewHolder2)holder;
+            Glide.with(context).load(chatItems.get(position).cover_img)
+                    .into(viewHolder2.cMusicImg);
+            viewHolder2.cMusicArtist.setText(chatItems.get(position).artist_name);
+            viewHolder2.cMusicTitle.setText(chatItems.get(position).music_name);
         }
     }
 

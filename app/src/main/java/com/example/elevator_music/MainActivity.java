@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lifeChatBtn = findViewById(R.id.life_chat_btn);
         recommendBtn = findViewById(R.id.recommend_btn);
 
-        adapter = new ChattingRecyclerAdapter(chatItems);
+        adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
