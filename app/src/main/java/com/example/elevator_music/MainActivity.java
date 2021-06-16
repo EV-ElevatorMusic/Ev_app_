@@ -1,72 +1,38 @@
 package com.example.elevator_music;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
-import kr.co.shineware.nlp.komoran.core.Komoran;
-import kr.co.shineware.nlp.komoran.model.KomoranResult;
-import kr.co.shineware.nlp.komoran.model.Token;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-
-import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.tensorflow.lite.Interpreter;
-
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.lang.ref.WeakReference;
-import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
@@ -76,7 +42,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     RecyclerView.Adapter adapter;
     RecyclerView rv;
     ArrayList<ChatItem> chatItems = new ArrayList<>();
-    TextView userNameTv, userEmailTv;
+    TextView userNameTv, userEmailTv, musicRecommendBtn, lifeChatBtn, recommendBtn;
+    Boolean isLifeChat = false;
+    Boolean isHidden = false;
+    ConstraintLayout chatPopupCl;
 
 
 
@@ -84,11 +53,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageButton hideChatPopupBtn = findViewById(R.id.hide_chat_popup_btn);
+        chatPopupCl = findViewById(R.id.chat_popup_cl);
         drawer = findViewById(R.id.drawer_layout);
         chatEdit = findViewById(R.id.chatEdit);
         chatSend = findViewById(R.id.chatSend);
         rv = findViewById(R.id.recyclerChat);
         openDrawer = findViewById(R.id.open_drawer);
+        musicRecommendBtn = findViewById(R.id.music_recommend_chat_btn);
+        lifeChatBtn = findViewById(R.id.life_chat_btn);
+        recommendBtn = findViewById(R.id.recommend_btn);
 
         adapter = new ChattingRecyclerAdapter(chatItems);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -107,6 +81,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userNameTv.setText(name);
         userEmailTv.setText(email);
 
+        hideChatPopupBtn.setOnClickListener(v -> {
+            if (isHidden) {
+                isHidden = false;
+                chatPopupCl.setVisibility(View.VISIBLE);
+            }
+            else {
+                isHidden = true;
+                chatPopupCl.setVisibility(View.INVISIBLE);
+            }
+        });
+
         openDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,38 +99,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        chatEdit.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    //Enter키눌렀을떄 처리
-                    if (!chatEdit.getText().toString().equals("")) {
-                        String text = chatEdit.getText().toString();
-                        all_input = all_input + text;
+        chatEdit.setOnKeyListener((v, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER) && !isLifeChat) {
+                //Enter키눌렀을떄 처리
+                if (!chatEdit.getText().toString().equals("")) {
+                    String text = chatEdit.getText().toString();
+                    all_input += text;
 
-                        String _uri = "/chatbot/?comment=" + all_input;
+                    String _uri = "/chatbot/?comment=" + all_input;
 
-                        NetworkTask networkTask = new NetworkTask("http://13.124.31.235/", _uri);
-                        networkTask.execute();
-                        return true;
-                    }
-                    return false;
+                    NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
+                    networkTask.execute();
+                    return true;
                 }
                 return false;
             }
+            return false;
         });
 
-        chatSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = chatEdit.getText().toString();
-                all_input = all_input + text;
+        chatSend.setOnClickListener(v -> {
+            String text = chatEdit.getText().toString();
+            all_input = all_input + text;
+            String _uri;
+            if (!isLifeChat) _uri = "/chatbot/?comment=" + all_input;
 
-                String _uri = "/chatbot/?comment=" + all_input;
+            else _uri = "/music/?comment=" + all_input;
 
-                NetworkTask networkTask = new NetworkTask("http://13.124.31.235/", _uri);
-                networkTask.execute();
-            }
+
+            NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
+            networkTask.execute();
+        });
+
+        lifeChatBtn.setOnClickListener(v -> {
+            isLifeChat = true;
+            chatItems.add(new ChatItem(0, "!일상채팅"));
+            adapter.notifyDataSetChanged();
+        });
+
+        musicRecommendBtn.setOnClickListener(v -> {
+            isLifeChat = false;
+            chatItems.add(new ChatItem(0, "!음악추천"));
+            adapter.notifyDataSetChanged();
         });
     }
 
@@ -216,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 urlConn.setDoInput(true);
                 urlConn.setRequestProperty("Accept-Charset", "utf-8"); // Accept-Charset 설정.
                 urlConn.setRequestProperty("Context_Type", "application/json");
+                urlConn.addRequestProperty("Connection", "close");
 
                 // [2-2]. parameter 전달 및 데이터 읽어오기.
 
