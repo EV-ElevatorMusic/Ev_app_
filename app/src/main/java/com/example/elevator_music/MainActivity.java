@@ -88,16 +88,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             else {
                 isHidden = true;
-                chatPopupCl.setVisibility(View.INVISIBLE);
+                chatPopupCl.setVisibility(View.GONE);
             }
         });
 
-        openDrawer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.openDrawer(Gravity.END);
-            }
-        });
+        openDrawer.setOnClickListener(v -> drawer.openDrawer(Gravity.END));
 
         chatEdit.setOnKeyListener((v, keyCode, event) -> {
             if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER) && !isLifeChat) {
