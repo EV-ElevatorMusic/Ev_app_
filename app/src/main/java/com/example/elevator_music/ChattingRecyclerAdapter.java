@@ -13,6 +13,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
@@ -82,9 +86,22 @@ public class ChattingRecyclerAdapter extends  RecyclerView.Adapter<RecyclerView.
         else {
             ViewHolder2 viewHolder2 = (ViewHolder2)holder;
             Glide.with(context).load(chatItems.get(position).cover_img)
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            Log.e("TAG", "Error loading image", e);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            return false;
+                        }
+                    })
                     .into(viewHolder2.cMusicImg);
             viewHolder2.cMusicArtist.setText(chatItems.get(position).artist_name);
             viewHolder2.cMusicTitle.setText(chatItems.get(position).music_name);
+            Log.e(TAG, "onBindViewHolder: " + chatItems.get(position).cover_img);
         }
     }
 

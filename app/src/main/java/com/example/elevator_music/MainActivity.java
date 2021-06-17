@@ -277,8 +277,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (isLifeChat){
                     String artist_name = jsonObject.get("artist_name")+"";
                     String cover_img = jsonObject.get("cover_img")+"";
+                    cover_img = cover_img.replaceAll("\"", "");
                     String music_name = jsonObject.get("music_name")+"";
                     String preview_url = jsonObject.get("preview_url")+"";
+                    String text = chatEdit.getText().toString();
+                    chatItems.add(new ChatItem(0, text));
+                    adapter.notifyDataSetChanged();
                     chatItems.add(new ChatItem(2, artist_name, cover_img, music_name, preview_url));
                 }else{
                     String comment = jsonObject.get("chat")+"";
