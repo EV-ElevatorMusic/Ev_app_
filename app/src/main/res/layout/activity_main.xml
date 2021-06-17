@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:padding="8dp"
-                    android:text="노래 추천 채팅"
+                    android:text="일상 대화 채팅"
                     app:layout_constraintBottom_toTopOf="@id/divider_view2"
                     app:layout_constraintTop_toTopOf="parent"/>
 
@@ -116,7 +116,7 @@
                     app:layout_constraintTop_toBottomOf="@id/divider_view2"
                     app:layout_constraintBottom_toTopOf="@id/divider_view1"
                     android:background="#fff"
-                    android:text="일상 생활 채팅"/>
+                    android:text="노래 추천 채팅"/>
                 <View
                     android:id="@+id/divider_view1"
                     android:layout_width="match_parent"

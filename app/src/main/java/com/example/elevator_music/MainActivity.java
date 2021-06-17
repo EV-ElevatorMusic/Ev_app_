@@ -127,13 +127,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         lifeChatBtn.setOnClickListener(v -> {
             isLifeChat = true;
-            chatItems.add(new ChatItem(0, "!일상채팅"));
+            chatItems.add(new ChatItem(0, "!음악추천"));
             adapter.notifyDataSetChanged();
         });
 
         musicRecommendBtn.setOnClickListener(v -> {
             isLifeChat = false;
-            chatItems.add(new ChatItem(0, "!음악추천"));
+            chatItems.add(new ChatItem(0, "!일상대화"));
             adapter.notifyDataSetChanged();
         });
     }
