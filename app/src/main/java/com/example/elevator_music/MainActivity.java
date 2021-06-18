@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //Enter키눌렀을떄 처리
                 if (!chatEdit.getText().toString().equals("")) {
                     String text = chatEdit.getText().toString();
+                    chatItems.add(new ChatItem(0, text));
+                    chatEdit.setText("");
                     all_input += text;
 
                     String _uri = "/chatbot/?comment=" + all_input;
