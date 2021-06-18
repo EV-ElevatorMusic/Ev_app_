@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonObject;
@@ -120,9 +122,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             else _uri = "/music/?comment=" + all_input;
 
+            chatItems.add(new ChatItem(0, text));
+            chatEdit.setText("");
 
             NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
             networkTask.execute();
+            chatSend.setEnabled(false);
+            new Handler().postDelayed(() -> chatSend.setEnabled(true), 1000);
         });
 
         lifeChatBtn.setOnClickListener(v -> {
@@ -213,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // 실패 시 null을 리턴하고 메서드를 종료.
                 if (urlConn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     Log.e("responseCode", "request: " + urlConn.getResponseCode() + urlConn.getResponseMessage()) ;
+                    Toast.makeText(MainActivity.this, urlConn.getRequestMethod(), Toast.LENGTH_SHORT).show();
                     return null;
                 }
                 Log.e("responseCode", "request: " + urlConn.getResponseCode() + urlConn.getResponseMessage()) ;
@@ -280,17 +287,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     cover_img = cover_img.replaceAll("\"", "");
                     String music_name = jsonObject.get("music_name")+"";
                     String preview_url = jsonObject.get("preview_url")+"";
-                    String text = chatEdit.getText().toString();
-                    chatItems.add(new ChatItem(0, text));
                     adapter.notifyDataSetChanged();
                     chatItems.add(new ChatItem(2, artist_name, cover_img, music_name, preview_url));
                 }else{
                     String comment = jsonObject.get("chat")+"";
                     String text = chatEdit.getText().toString();
                     Log.e("tag", "onPostExecute: "+ jsonObject );
-                    chatItems.add(new ChatItem(0, text));
                     adapter.notifyDataSetChanged();
-                    chatEdit.setText("");
                     chatItems.add(new ChatItem(1, comment));
                 }
                 adapter.notifyDataSetChanged();
