@@ -61,7 +61,8 @@
         android:textSize="10sp"
         android:paddingLeft="16dp"
         android:fontFamily="@font/nanumgothic"
-        app:layout_constraintTop_toBottomOf="@+id/nameText"/>
+        app:layout_constraintTop_toBottomOf="@+id/nameText"
+        android:textColor="#000"/>
 
     <TextView
         android:id="@+id/idText"
@@ -90,7 +91,8 @@
         android:textSize="10sp"
         android:paddingLeft="16dp"
         android:fontFamily="@font/nanumgothic"
-        app:layout_constraintTop_toBottomOf="@+id/idText"/>
+        app:layout_constraintTop_toBottomOf="@+id/idText"
+        android:textColor="#000"/>
 
     <TextView
         android:id="@+id/pwdText"
@@ -119,7 +121,8 @@
         android:hint="비밀번호를 입력하세요"
         android:textSize="10sp"
         android:paddingLeft="16dp"
-        android:fontFamily="@font/nanumgothic"/>
+        android:fontFamily="@font/nanumgothic"
+        android:textColor="#000"/>
 
     <TextView
         android:id="@+id/checkText"
@@ -148,7 +151,8 @@
         android:hint="비밀번호를 한 번 더 입력하세요"
         android:textSize="10sp"
         android:paddingLeft="16dp"
-        android:fontFamily="@font/nanumgothic"/>
+        android:fontFamily="@font/nanumgothic"
+        android:textColor="#000"/>
 
     <Button
         android:id="@+id/join_request_button"

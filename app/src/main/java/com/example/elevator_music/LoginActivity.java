@@ -101,18 +101,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct){
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(),null);
         auth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this, "인증 실패", Toast.LENGTH_SHORT).show();
-                        }else{
-                            userId = auth.getUid();
-                            name = auth.getCurrentUser().getDisplayName();
-                            Log.e("GoogleName", "onComplete: "+auth.getCurrentUser().getDisplayName() );
-                            Toast.makeText(LoginActivity.this, "구글 로그인 인증 성공", Toast.LENGTH_SHORT).show();
-                            LoginIntent();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if(!task.isSuccessful()){
+                        Toast.makeText(LoginActivity.this, "인증 실패", Toast.LENGTH_SHORT).show();
+                    }else{
+                        userId = auth.getUid();
+                        name = auth.getCurrentUser().getDisplayName();
+                        Log.e("GoogleName", "onComplete: "+auth.getCurrentUser().getDisplayName() );
+                        Toast.makeText(LoginActivity.this, "구글 로그인 인증 성공", Toast.LENGTH_SHORT).show();
+                        LoginIntent();
                     }
                 });
     }
@@ -258,12 +255,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         });
         // Callback registration
 
-        loginText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
-                startActivity(intent);
-            }
+        loginText.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
+            startActivity(intent);
         });
         googleLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,28 +267,22 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!et_password.getText().toString().equals("") || !et_id.getText().toString().equals("")) {
-                    auth.signInWithEmailAndPassword(et_id.getText().toString(), et_password.getText().toString())
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.e("Login", "onComplete: Success" );
-                                        Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                                        LoginIntent();
-                                    }
-                                    else{
-                                        Log.e("Login", "onComplete: Fail");
-                                        Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                } else{
-                    Toast.makeText(LoginActivity.this, "빈칸이 있습니다", Toast.LENGTH_SHORT).show();
-                }
+        btn_login.setOnClickListener(v -> {
+            if (!et_password.getText().toString().equals("") || !et_id.getText().toString().equals("")) {
+                auth.signInWithEmailAndPassword(et_id.getText().toString(), et_password.getText().toString())
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Log.e("Login", "onComplete: Success" );
+                                Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                                LoginIntent();
+                            }
+                            else{
+                                Log.e("Login", "onComplete: Fail");
+                                Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            } else{
+                Toast.makeText(LoginActivity.this, "빈칸이 있습니다", Toast.LENGTH_SHORT).show();
             }
         });
     }
