@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:id="@+id/log_out_tv"
             app:layout_constraintRight_toLeftOf="@id/log_out_btn"
             app:layout_constraintTop_toTopOf="@id/log_out_btn"
             app:layout_constraintBottom_toBottomOf="@id/log_out_btn"

@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         View nav_header_view = navigationView.getHeaderView(0);
 
+        TextView logoutTv = nav_header_view.findViewById(R.id.log_out_tv);
         userEmailTv = nav_header_view.findViewById(R.id.drawer_user_email);
         userNameTv = nav_header_view.findViewById(R.id.drawer_user_name);
 
@@ -143,6 +144,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             isLifeChat = false;
             chatItems.add(new ChatItem(0, "!일상대화"));
             adapter.notifyDataSetChanged();
+        });
+
+        logoutTv.setOnClickListener(v -> {
+            LoginActivity.auth.signOut();
+            Intent logoutIntent = new Intent(getApplicationContext(), MainActivity.class);
+            logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(logoutIntent);
         });
     }
 

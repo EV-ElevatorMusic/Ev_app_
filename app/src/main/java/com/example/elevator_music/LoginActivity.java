@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public static String name, userId, email;
     Button loginText;
     EditText et_id, et_password;
-    FirebaseAuth auth = FirebaseAuth.getInstance();
+    public static FirebaseAuth auth = FirebaseAuth.getInstance();
     Button btn_login;
     ImageButton googleLogin, githubLogin, fbLogin;
     private GoogleApiClient googleApiClient;
@@ -76,19 +76,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private void getFbUserName(AccessToken accessToken){
         GraphRequest request = GraphRequest.newMeRequest(
                 accessToken,
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(
-                            JSONObject object,
-                            GraphResponse response) {
-                        // Application code
-                        try {
-                            Log.e("getName", "onCompleted: "+object.getString("name") );
-                            name = object.getString("name");
-                            userId = auth.getUid();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                (object, response) -> {
+                    // Application code
+                    try {
+                        Log.e("getName", "onCompleted: "+object.getString("name") );
+                        name = object.getString("name");
+                        userId = auth.getUid();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 });
         Bundle parameters = new Bundle();
