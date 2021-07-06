@@ -43,6 +43,29 @@
             android:textColor="#646464"/>
 
     </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            app:layout_constraintRight_toLeftOf="@id/log_out_btn"
+            app:layout_constraintTop_toTopOf="@id/log_out_btn"
+            app:layout_constraintBottom_toBottomOf="@id/log_out_btn"
+            android:textSize="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:textColor="#646464"
+            android:fontFamily="@font/nanumgothic"
+            android:layout_marginEnd="8dp"/>
+        <ImageView
+            android:id="@+id/log_out_btn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/ic_log_out_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
