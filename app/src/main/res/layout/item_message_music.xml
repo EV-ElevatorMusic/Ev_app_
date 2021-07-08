@@ -59,14 +59,15 @@
 <!--            android:layout_marginRight="16dp"-->
 <!--            android:src="@drawable/start_shadow" />-->
         
-<!--        <ImageView-->
-<!--            android:layout_width="13dp"-->
-<!--            android:layout_height="13dp"-->
-<!--            android:src="@drawable/music_start"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintRight_toRightOf="parent"-->
-<!--            android:layout_marginRight="16dp" />-->
+        <ImageView
+            android:id="@+id/music_play_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_play_circle_filled_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="16dp" />
 
         
     </androidx.constraintlayout.widget.ConstraintLayout>
