@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +20,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -298,6 +300,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     cover_img = cover_img.replaceAll("\"", "");
                     String music_name = jsonObject.get("music_name")+"";
                     String preview_url = jsonObject.get("preview_url")+"";
+                    preview_url = preview_url.replaceAll("\"", "");
                     adapter.notifyDataSetChanged();
                     chatItems.add(new ChatItem(2, artist_name, cover_img, music_name, preview_url));
                 }else{
