@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+        ((LinearLayoutManager)rv.getLayoutManager()).setStackFromEnd(true);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
