@@ -85,7 +85,7 @@ public class RankingActivity extends AppCompatActivity implements NavigationView
 
             @Override
             public void onFailure(Call<TestItem> call, Throwable t) {
-                Log.d("RankingActivity", t.toString());
+                Log.d("RankingActivity_error", t.toString());
             }
         });
 
