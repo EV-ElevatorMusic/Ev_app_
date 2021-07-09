@@ -10,17 +10,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.elevator_music.Retrofit.ApiClient;
+import com.example.elevator_music.Retrofit.Data;
+import com.example.elevator_music.Retrofit.RetrofitInterface;
+import com.example.elevator_music.Retrofit.TestItem;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RankingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    TestItem dataList;
+    ArrayList<Data> dataInfo;
+
+    RankingSadAdapter sadAdapter;
+
     RecyclerView.Adapter adapterHappy;
-    RecyclerView.Adapter adapterSad;
+//    RecyclerView.Adapter adapterSad;
     RecyclerView.Adapter adapterMad;
     ArrayList<String> rankingHappyUrl = new ArrayList<>();
     ArrayList<String> rankingSadUrl = new ArrayList<>();
@@ -35,12 +49,7 @@ public class RankingActivity extends AppCompatActivity implements NavigationView
         setSupportActionBar(toolbar);
         rvHappy = findViewById(R.id.musicHappy);
         rvMad = findViewById(R.id.musicMad);
-        rvSad = findViewById(R.id.musicSad);
-        rankingSadUrl.add("https://youtu.be/bIB8EWqCPrQ");
-        rankingSadUrl.add("https://youtu.be/_4ebvRDKG7I");
-        rankingSadUrl.add("https://youtu.be/_Arh7zOl2fk");
-        rankingSadUrl.add("https://youtu.be/sohFdOgOr_0");
-        rankingSadUrl.add("https://youtu.be/hbF7j3ZHOrA");
+
         rankingHappyUrl.add("https://youtu.be/6vqT0LoiCKM");
         rankingHappyUrl.add("https://youtu.be/BizBCm3W4Ok");
         adapterHappy = new RankingHappyAdapter(rankingHappyUrl, getApplicationContext());
@@ -49,10 +58,36 @@ public class RankingActivity extends AppCompatActivity implements NavigationView
         adapterMad = new RankingMadAdapter(rankingMadUrl, getApplicationContext());
         rvMad.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvMad.setAdapter(adapterMad);
-        adapterSad = new RankingSadAdapter(rankingSadUrl, getApplicationContext());
-        rvSad.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        rvSad.setAdapter(adapterSad);
 
+
+        dataInfo = new ArrayList<>();
+        rvSad = findViewById(R.id.musicSad);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        rvSad.setLayoutManager(layoutManager);
+
+        RetrofitInterface retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
+
+        Call<TestItem> call = retrofitInterface.getData();
+
+        call.enqueue(new Callback<TestItem>() {
+            @Override
+            public void onResponse(Call<TestItem> call, Response<TestItem> response) {
+                dataList = response.body();
+
+                Log.d("RankingActivity", dataList.toString());
+
+                dataInfo = dataList.musics;
+
+                sadAdapter = new RankingSadAdapter(dataInfo, getApplicationContext());
+                rvSad.setAdapter(sadAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<TestItem> call, Throwable t) {
+                Log.d("RankingActivity", t.toString());
+            }
+        });
 
 
         //NavigationView navigationView = findViewById(R.id.nav_view2);
