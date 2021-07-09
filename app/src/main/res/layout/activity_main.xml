@@ -88,7 +88,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/chat_popup_cl"
                 android:layout_width="match_parent"
-                android:layout_height="108dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@id/chat_box">
 
                 <TextView
@@ -96,8 +96,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
-                    android:padding="8dp"
+                    android:paddingVertical="16dp"
+                    android:paddingStart="8dp"
                     android:text="일상 대화 채팅"
+                    android:fontFamily="@font/nanumgothicbold"
                     app:layout_constraintBottom_toTopOf="@id/divider_view2"
                     app:layout_constraintTop_toTopOf="parent"/>
 
@@ -112,10 +114,12 @@
                     android:id="@+id/life_chat_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
                     app:layout_constraintTop_toBottomOf="@id/divider_view2"
                     app:layout_constraintBottom_toTopOf="@id/divider_view1"
                     android:background="#fff"
+                    android:paddingVertical="16dp"
+                    android:paddingStart="8dp"
+                    android:fontFamily="@font/nanumgothicbold"
                     android:text="노래 추천 채팅"/>
                 <View
                     android:id="@+id/divider_view1"
@@ -130,8 +134,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
-                    android:padding="8dp"
                     android:text="랭킹 추천"
+                    android:paddingVertical="16dp"
+                    android:paddingStart="8dp"
+                    android:fontFamily="@font/nanumgothicbold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_view1" />
 

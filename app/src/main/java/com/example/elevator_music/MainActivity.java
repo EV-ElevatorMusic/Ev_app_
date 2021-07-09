@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     EditText chatEdit;
-    ImageButton chatSend, openDrawer;
+    ImageButton chatSend, openDrawer, hideChatPopupBtn;
     String all_input, name, email;
     RecyclerView.Adapter adapter;
     RecyclerView rv;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageButton hideChatPopupBtn = findViewById(R.id.hide_chat_popup_btn);
+        hideChatPopupBtn = findViewById(R.id.hide_chat_popup_btn);
         chatPopupCl = findViewById(R.id.chat_popup_cl);
         drawer = findViewById(R.id.drawer_layout);
         chatEdit = findViewById(R.id.chatEdit);
@@ -87,10 +87,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         hideChatPopupBtn.setOnClickListener(v -> {
             if (isHidden) {
                 isHidden = false;
+                hideChatPopupBtn.setImageResource(R.drawable.ic_baseline_featured_play_list_24);
                 chatPopupCl.setVisibility(View.VISIBLE);
             }
             else {
                 isHidden = true;
+                hideChatPopupBtn.setImageResource(R.drawable.ic_outline_featured_play_list_24);
                 chatPopupCl.setVisibility(View.GONE);
             }
         });
