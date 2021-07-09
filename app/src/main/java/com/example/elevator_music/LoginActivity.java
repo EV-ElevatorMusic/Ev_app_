@@ -317,6 +317,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         intent.putExtra("email", auth.getCurrentUser().getEmail());
         intent.putExtra("name", auth.getCurrentUser().getDisplayName());
         intent.putExtra("userId", auth.getCurrentUser().getUid());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }

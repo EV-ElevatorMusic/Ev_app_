@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     EditText chatEdit;
-    ImageButton chatSend, openDrawer, hideChatPopupBtn;
+    ImageButton chatSend, openDrawer, hideChatPopupBtn, logoutBtn;
     String all_input, name, email;
     RecyclerView.Adapter adapter;
     RecyclerView rv;
@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lifeChatBtn = findViewById(R.id.life_chat_btn);
         recommendBtn = findViewById(R.id.recommend_btn);
 
+
+
         adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
@@ -77,12 +79,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView logoutTv = nav_header_view.findViewById(R.id.log_out_tv);
         userEmailTv = nav_header_view.findViewById(R.id.drawer_user_email);
         userNameTv = nav_header_view.findViewById(R.id.drawer_user_name);
+        logoutBtn = nav_header_view.findViewById(R.id.log_out_btn);
 
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         email = intent.getStringExtra("email");
         userNameTv.setText(name);
         userEmailTv.setText(email);
+
+        logoutBtn.setOnClickListener(view -> {
+            LoginActivity.auth.signOut();
+            Intent logoutIntent = new Intent(getApplicationContext(), EnterActivity.class);
+            logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(logoutIntent);
+        });
 
         hideChatPopupBtn.setOnClickListener(v -> {
             if (isHidden) {
@@ -150,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         logoutTv.setOnClickListener(v -> {
             LoginActivity.auth.signOut();
-            Intent logoutIntent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent logoutIntent = new Intent(getApplicationContext(), EnterActivity.class);
             logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(logoutIntent);
         });

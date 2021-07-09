@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="147dp"
     android:background="#ffffff"
@@ -9,66 +10,60 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_width="67dp"
-        android:layout_height="67dp"
-        android:src="@drawable/music_round"
-        android:layout_marginTop="53dp"
-        android:layout_marginBottom="27dp"
-        android:layout_marginLeft="16dp"/>
+        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/music_round" />
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/drawer_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="36dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/drawer_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="김뫄뫄"
-            android:textSize="20sp"
-            android:fontFamily="@font/nanumgothicbold"
-            android:textColor="#646464" />
-
-        <TextView
-            android:id="@+id/drawer_user_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="example01@gmail.com"
-            android:fontFamily="@font/nanumgothiclight"
-            android:textSize="15sp"
-            android:textColor="#646464"/>
-
-    </LinearLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/log_out_tv"
-            app:layout_constraintRight_toLeftOf="@id/log_out_btn"
-            app:layout_constraintTop_toTopOf="@id/log_out_btn"
-            app:layout_constraintBottom_toBottomOf="@id/log_out_btn"
-            android:textSize="18dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그아웃"
-            android:textColor="#646464"
-            android:fontFamily="@font/nanumgothic"
-            android:layout_marginEnd="8dp"/>
-        <ImageView
-            android:id="@+id/log_out_btn"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/ic_log_out_24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:fontFamily="@font/nanumgothicbold"
+        tools:text="김뫄뫄"
+        android:textColor="#646464"
+        android:textSize="26sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"/>
 
 
+    <TextView
+        android:id="@+id/drawer_user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumgothiclight"
+        android:text="example01@gmail.com"
+        android:textColor="#646464"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/drawer_user_name"
+        app:layout_constraintLeft_toLeftOf="@id/drawer_user_name"
+        android:layout_marginTop="16dp"/>
 
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/log_out_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/nanumgothic"
+        android:text="로그아웃"
+        android:textColor="#646464"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@id/log_out_btn"
+        app:layout_constraintRight_toLeftOf="@id/log_out_btn"
+        app:layout_constraintTop_toTopOf="@id/log_out_btn" />
+
+    <ImageButton
+        android:id="@+id/log_out_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/drawer_user_name"
+        android:layout_marginEnd="8dp"
+        android:background="#00000000"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
