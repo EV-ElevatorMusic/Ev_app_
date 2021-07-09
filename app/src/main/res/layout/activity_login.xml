@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="E-mail"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:fontFamily="@font/nanumgothicbold"
             android:textColor="#646464"
             android:layout_marginLeft="16dp"/>
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumgothic"
             android:hint="이메일를 입력하세요"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:background="@null"
             android:layout_marginLeft="35dp"
             android:textColor="#000"/>
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:fontFamily="@font/nanumgothicbold"
             android:textColor="#646464"
             android:layout_marginLeft="16dp"/>
@@ -98,10 +98,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumgothic"
             android:hint="비밀번호를 입력하세요"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:background="@null"
             android:layout_marginLeft="22dp"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:inputType="textPassword"/>
 
     </LinearLayout>
 
@@ -111,7 +112,7 @@
         android:layout_height="wrap_content"
         android:text="회원가입"
         android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:fontFamily="@font/nanumgothicbold"
         app:layout_constraintTop_toBottomOf="@+id/loginEnter"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -127,7 +128,7 @@
         android:layout_height="wrap_content"
         android:text="로그인"
         android:textColor="#fcfcfc"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:cornerRadius="16dp"
         android:background="@drawable/login_gradient"
         android:fontFamily="@font/nanumgothicbold"
