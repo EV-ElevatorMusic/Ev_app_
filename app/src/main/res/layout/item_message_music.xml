@@ -5,8 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="177dp"
-        android:layout_height="45dp"
+        android:layout_width="200dp"
+        android:layout_height="56dp"
         android:background="@drawable/music_chat"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -30,11 +30,11 @@
             android:layout_height="wrap_content"
             android:text="아픈 길"
             android:fontFamily="@font/nanumgothicbold"
-            android:textSize="9dp"
+            android:textSize="13sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/cMusicImg"
             android:textColor="#646464"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="12dp"/>
 
         <TextView
@@ -42,12 +42,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DAY6(데이식스)"
-            android:textSize="6dp"
+            android:textSize="11sp"
             android:textColor="#646464"
             android:fontFamily="@font/nanumgothiclight"
             app:layout_constraintTop_toBottomOf="@+id/cMusicTitle"
             app:layout_constraintLeft_toRightOf="@+id/cMusicImg"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="4dp"/>
 
 <!--        <ImageView-->
