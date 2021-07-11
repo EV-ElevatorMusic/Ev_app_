@@ -13,10 +13,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.example.elevator_music.RankingAdapter.RankingAdapter;
 import com.example.elevator_music.Retrofit.ApiClient;
 import com.example.elevator_music.Retrofit.Data;
-import com.example.elevator_music.Retrofit.RetrofitInterface;
+import com.example.elevator_music.Retrofit.RetrofitHappyInterface;
+import com.example.elevator_music.Retrofit.RetrofitMadInterface;
+import com.example.elevator_music.Retrofit.RetrofitSadInterface;
 import com.example.elevator_music.Retrofit.TestItem;
 import com.google.android.material.navigation.NavigationView;
 
@@ -31,63 +35,19 @@ public class RankingActivity extends AppCompatActivity implements NavigationView
     TestItem dataList;
     ArrayList<Data> dataInfo;
 
-    RankingSadAdapter sadAdapter;
+    RankingAdapter adapter;
 
-    RecyclerView.Adapter adapterHappy;
-//    RecyclerView.Adapter adapterSad;
-    RecyclerView.Adapter adapterMad;
-    ArrayList<String> rankingHappyUrl = new ArrayList<>();
-    ArrayList<String> rankingSadUrl = new ArrayList<>();
-    ArrayList<String> rankingMadUrl = new ArrayList<>();
+    RecyclerView rvHappy, rvSad, rvMad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
-        RecyclerView rvHappy, rvSad, rvMad;
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        rvHappy = findViewById(R.id.musicHappy);
-        rvMad = findViewById(R.id.musicMad);
 
-        rankingHappyUrl.add("https://youtu.be/6vqT0LoiCKM");
-        rankingHappyUrl.add("https://youtu.be/BizBCm3W4Ok");
-        adapterHappy = new RankingHappyAdapter(rankingHappyUrl, getApplicationContext());
-        rvHappy.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        rvHappy.setAdapter(adapterHappy);
-        adapterMad = new RankingMadAdapter(rankingMadUrl, getApplicationContext());
-        rvMad.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        rvMad.setAdapter(adapterMad);
-
-
-        dataInfo = new ArrayList<>();
-        rvSad = findViewById(R.id.musicSad);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rvSad.setLayoutManager(layoutManager);
-
-        RetrofitInterface retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
-
-        Call<TestItem> call = retrofitInterface.getData();
-
-        call.enqueue(new Callback<TestItem>() {
-            @Override
-            public void onResponse(Call<TestItem> call, Response<TestItem> response) {
-                dataList = response.body();
-
-                Log.d("RankingActivity", dataList.toString());
-
-                dataInfo = dataList.musics;
-
-                sadAdapter = new RankingSadAdapter(dataInfo, getApplicationContext());
-                rvSad.setAdapter(sadAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<TestItem> call, Throwable t) {
-                Log.d("RankingActivity_error", t.toString());
-            }
-        });
+        init();
 
 
         //NavigationView navigationView = findViewById(R.id.nav_view2);
@@ -138,5 +98,83 @@ public class RankingActivity extends AppCompatActivity implements NavigationView
         DrawerLayout drawer = findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.END);
         return true;
+    }
+
+    private void init(){
+        rvHappy = findViewById(R.id.musicHappy);
+        rvMad = findViewById(R.id.musicMad);
+        rvSad = findViewById(R.id.musicSad);
+
+        dataInfo = new ArrayList<>();
+
+        rvSad.setLayoutManager(new LinearLayoutManager(this));
+        rvMad.setLayoutManager(new LinearLayoutManager(this));
+        rvHappy.setLayoutManager(new LinearLayoutManager(this));
+
+        RetrofitSadInterface sadInterface = ApiClient.getClient().create(RetrofitSadInterface.class);
+        RetrofitHappyInterface happyInterface = ApiClient.getClient().create(RetrofitHappyInterface.class);
+        RetrofitMadInterface madInterface = ApiClient.getClient().create(RetrofitMadInterface.class);
+
+        Call<TestItem> sCall = sadInterface.getData();
+        sCall.enqueue(new Callback<TestItem>() {
+            @Override
+            public void onResponse(Call<TestItem> call, Response<TestItem> response) {
+                dataList = response.body();
+
+                Log.d("RankingActivity", dataList.toString());
+
+                dataInfo = dataList.musics;
+
+                adapter = new RankingAdapter(dataInfo, getApplicationContext());
+                rvSad.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<TestItem> call, Throwable t) {
+                Log.d("RankingActivity_error", t.toString());
+            }
+        });
+
+
+        Call<TestItem> hCall = happyInterface.getData();
+        hCall.enqueue(new Callback<TestItem>() {
+            @Override
+            public void onResponse(Call<TestItem> call, Response<TestItem> response) {
+                dataList = response.body();
+
+                Log.d("RankingActivity", dataList.toString());
+
+                dataInfo = dataList.musics;
+
+                adapter = new RankingAdapter(dataInfo, getApplicationContext());
+                rvHappy.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<TestItem> call, Throwable t) {
+                Log.d("RankingActivity_error", t.toString());
+            }
+        });
+
+
+        Call<TestItem> mCall = madInterface.getData();
+        mCall.enqueue(new Callback<TestItem>() {
+            @Override
+            public void onResponse(Call<TestItem> call, Response<TestItem> response) {
+                dataList = response.body();
+
+                Log.d("RankingActivity", dataList.toString());
+
+                dataInfo = dataList.musics;
+
+                adapter = new RankingAdapter(dataInfo, getApplicationContext());
+                rvMad.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<TestItem> call, Throwable t) {
+                Log.d("RankingActivity_error", t.toString());
+            }
+        });
     }
 }
