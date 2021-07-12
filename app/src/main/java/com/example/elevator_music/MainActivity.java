@@ -97,19 +97,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         chatEdit.setOnKeyListener((v, keyCode, event) -> {
             if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                //Enter키눌렀을떄 처리
-//                if (!chatEdit.getText().toString().equals("")) {
-//                    String text = chatEdit.getText().toString();
-//                    chatItems.add(new ChatItem(0, text));
-//                    chatEdit.setText("");
-//                    all_input += text;
-//
-//                    String _uri = "/chatbot/?comment=" + all_input;
-//
-//                    NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
-//                    networkTask.execute();
-//                    return true;
-//                }
+                if (!chatEdit.getText().toString().equals("")) {
+                    String text = chatEdit.getText().toString();
+                    chatItems.add(new ChatItem(0, text));
+                    chatEdit.setText("");
+                    all_input += text;
+
+                    String _uri = "/chatbot/?comment=" + all_input;
+
+                    NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
+                    networkTask.execute();
+                    return true;
+                }
                 return true;
             }
             return false;
