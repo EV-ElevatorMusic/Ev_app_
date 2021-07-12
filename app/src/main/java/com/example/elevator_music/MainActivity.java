@@ -57,16 +57,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hideChatPopupBtn = findViewById(R.id.hide_chat_popup_btn);
-        chatPopupCl = findViewById(R.id.chat_popup_cl);
         drawer = findViewById(R.id.drawer_layout);
         chatEdit = findViewById(R.id.chatEdit);
         chatSend = findViewById(R.id.chatSend);
         rv = findViewById(R.id.recyclerChat);
         openDrawer = findViewById(R.id.open_drawer);
-        musicRecommendBtn = findViewById(R.id.music_recommend_chat_btn);
-        lifeChatBtn = findViewById(R.id.life_chat_btn);
-        recommendBtn = findViewById(R.id.recommend_btn);
 
 
 
@@ -97,77 +92,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(logoutIntent);
         });
 
-        hideChatPopupBtn.setOnClickListener(v -> {
-            if (isHidden) {
-                isHidden = false;
-                hideChatPopupBtn.setImageResource(R.drawable.ic_baseline_featured_play_list_24);
-                chatPopupCl.setVisibility(View.VISIBLE);
-            }
-            else {
-                isHidden = true;
-                hideChatPopupBtn.setImageResource(R.drawable.ic_outline_featured_play_list_24);
-                chatPopupCl.setVisibility(View.GONE);
-            }
-        });
 
         openDrawer.setOnClickListener(v -> drawer.openDrawer(Gravity.END));
 
         chatEdit.setOnKeyListener((v, keyCode, event) -> {
-            if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER) && !isLifeChat) {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 //Enter키눌렀을떄 처리
-                if (!chatEdit.getText().toString().equals("")) {
-                    String text = chatEdit.getText().toString();
-                    chatItems.add(new ChatItem(0, text));
-                    chatEdit.setText("");
-                    all_input += text;
-
-                    String _uri = "/chatbot/?comment=" + all_input;
-
-                    NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
-                    networkTask.execute();
-                    return true;
-                }
-                return false;
+//                if (!chatEdit.getText().toString().equals("")) {
+//                    String text = chatEdit.getText().toString();
+//                    chatItems.add(new ChatItem(0, text));
+//                    chatEdit.setText("");
+//                    all_input += text;
+//
+//                    String _uri = "/chatbot/?comment=" + all_input;
+//
+//                    NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
+//                    networkTask.execute();
+//                    return true;
+//                }
+                return true;
             }
             return false;
         });
 
         chatSend.setOnClickListener(v -> {
             String text = chatEdit.getText().toString();
-            all_input = all_input + text;
-            String _uri;
-            if (!isLifeChat) _uri = "/chatbot/?comment=" + all_input;
+            if (text.equals("")) Toast.makeText(this, "대화를 입력해주세요", Toast.LENGTH_SHORT).show();
 
-            else _uri = "/music/?comment=" + all_input;
+            else{
+                all_input = all_input + text;
+                String _uri = "/chatbot/?comment=" + all_input;
 
-            chatItems.add(new ChatItem(0, text));
-            chatEdit.setText("");
+                chatItems.add(new ChatItem(0, text));
+                adapter.notifyDataSetChanged();
+                chatEdit.setText("");
 
-            NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
-            networkTask.execute();
-            chatSend.setEnabled(false);
-            new Handler().postDelayed(() -> chatSend.setEnabled(true), 1000);
-        });
-
-        lifeChatBtn.setOnClickListener(v -> {
-            isLifeChat = true;
-            chatItems.add(new ChatItem(0, "!음악추천"));
-            adapter.notifyDataSetChanged();
-        });
-
-        musicRecommendBtn.setOnClickListener(v -> {
-            isLifeChat = false;
-            chatItems.add(new ChatItem(0, "!일상대화"));
-            adapter.notifyDataSetChanged();
-        });
-
-        recommendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(MainActivity.this, RankingActivity.class);
-                startActivity(intent1);
+                NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
+                networkTask.execute();
+                chatSend.setEnabled(false);
+                new Handler().postDelayed(() -> chatSend.setEnabled(true), 500);
             }
+
         });
+
 
         logoutTv.setOnClickListener(v -> {
             LoginActivity.auth.signOut();
@@ -227,29 +194,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             HttpURLConnection urlConn = null;
 
-            // URL 뒤에 붙여서 보낼 파라미터.
             _url += _uri;
 
-            /**
-             * 2. HttpURLConnection을 통해 web의 데이터를 가져온다.
-             * */
             try {
                 URL url = new URL(_url);
                 urlConn = (HttpURLConnection) url.openConnection();
 
-                // [2-1]. urlConn 설정.
                 urlConn.setReadTimeout(10000);
                 urlConn.setConnectTimeout(15000);
-                urlConn.setRequestMethod("GET"); // URL 요청에 대한 메소드 설정 : GET/POST.
+                urlConn.setRequestMethod("GET");
                 urlConn.setDoInput(true);
-                urlConn.setRequestProperty("Accept-Charset", "utf-8"); // Accept-Charset 설정.
-                urlConn.setRequestProperty("Context_Type", "application/json");
-                urlConn.addRequestProperty("Connection", "close");
+                urlConn.setRequestProperty("Connection", "close");
 
-                // [2-2]. parameter 전달 및 데이터 읽어오기.
 
-                // [2-3]. 연결 요청 확인.
-                // 실패 시 null을 리턴하고 메서드를 종료.
                 if (urlConn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     Log.e("responseCode", "request: " + urlConn.getResponseCode() + urlConn.getResponseMessage()) ;
                     Toast.makeText(MainActivity.this, urlConn.getRequestMethod(), Toast.LENGTH_SHORT).show();
@@ -257,15 +214,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 Log.e("responseCode", "request: " + urlConn.getResponseCode() + urlConn.getResponseMessage()) ;
 
-                // [2-4]. 읽어온 결과물 리턴.
-                // 요청한 URL의 출력물을 BufferedReader로 받는다.
                 BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream(), "UTF-8"));
 
-                // 출력물의 라인과 그 합에 대한 변수.
                 String line;
                 String page = "";
 
-                // 라인을 받아와 합친다.
                 while ((line = reader.readLine()) != null) {
                     page += line;
                 }
@@ -295,7 +248,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //progress bar를 보여주는 등등의 행위
         }
 
         @Override
@@ -314,19 +266,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 JsonParser parser = new JsonParser();
                 Object object = parser.parse(result);
                 JsonObject jsonObject = (JsonObject)object;
-                if (isLifeChat){
+                String responsetype = jsonObject.get("responsetype") + "";
+                responsetype = responsetype.replaceAll("\"", "");
+                if (responsetype.equals("music")){
+                    jsonObject = (JsonObject) jsonObject.get("music");
+
                     String artist_name = jsonObject.get("artist_name")+"";
+                    artist_name = artist_name.replaceAll("\"", "");
+
                     String cover_img = jsonObject.get("cover_img")+"";
                     cover_img = cover_img.replaceAll("\"", "");
+
                     String music_name = jsonObject.get("music_name")+"";
+                    music_name = music_name.replaceAll("\"", "");
+
                     String preview_url = jsonObject.get("preview_url")+"";
                     preview_url = preview_url.replaceAll("\"", "");
+
                     adapter.notifyDataSetChanged();
                     chatItems.add(new ChatItem(2, artist_name, cover_img, music_name, preview_url));
                 }else{
                     String comment = jsonObject.get("chat")+"";
-                    String text = chatEdit.getText().toString();
-                    Log.e("tag", "onPostExecute: "+ jsonObject );
+                    comment = comment.replaceAll("\"", "");
+                    Log.e("tag", "onPostExecute: "+ jsonObject.get("responsetype") );
                     adapter.notifyDataSetChanged();
                     chatItems.add(new ChatItem(1, comment));
                 }
