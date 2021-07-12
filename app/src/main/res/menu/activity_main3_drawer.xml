@@ -7,9 +7,6 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/mRanking"
             android:title="음악 랭킹"
-            app:showAsAction="ifRoom"/>
-        <item android:title="설정"
-            android:id="@+id/setting"
             app:showAsAction="ifRoom" />
     </group>
 

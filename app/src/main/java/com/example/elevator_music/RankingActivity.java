@@ -86,10 +86,7 @@ public class RankingActivity extends AppCompatActivity implements NavigationView
 
         Intent intent;
 
-        if (id == R.id.setting) {
-            intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.mRanking) {
+        if (id == R.id.mRanking) {
             intent = new Intent(this, RankingActivity.class);
             startActivity(intent);
         }
