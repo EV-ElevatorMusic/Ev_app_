@@ -136,7 +136,8 @@
         android:layout_gravity="end"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main3"
-        app:menu="@menu/activity_main3_drawer" />
+        app:menu="@menu/activity_main3_drawer"
+        app:itemTextColor="@color/colorAccent"/>
 
 
 
