@@ -50,21 +50,18 @@ public class JoinActivity extends AppCompatActivity {
                         String signUp_Id = et_id.getText().toString();
                         String signUp_Password = et_password.getText().toString();
                         auth.createUserWithEmailAndPassword(signUp_Id, signUp_Password)
-                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            Log.e("SignUp", "Success");
-                                            currentUser = auth.getCurrentUser();
-                                            UserProfileChangeRequest request = new UserProfileChangeRequest.Builder().setDisplayName(et_name.getText().toString()).build();
-                                            currentUser.updateProfile(request);
-                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                            startActivity(intent);
-                                            finish();
-                                        } else {
-                                            Log.e("SignUp", "Failure", task.getException());
-                                            Toast.makeText(JoinActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                        }
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        Log.e("SignUp", "Success");
+                                        currentUser = auth.getCurrentUser();
+                                        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder().setDisplayName(et_name.getText().toString()).build();
+                                        currentUser.updateProfile(request);
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Log.e("SignUp", "Failure", task.getException());
+                                        Toast.makeText(JoinActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                                     }
                                 });
 

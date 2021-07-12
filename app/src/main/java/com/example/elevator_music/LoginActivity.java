@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 (object, response) -> {
                     // Application code
                     try {
-                        Log.e("getName", "onCompleted: "+object.getString("name") );
                         name = object.getString("name");
                         userId = auth.getUid();
                     } catch (JSONException e) {
@@ -102,7 +101,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     }else{
                         userId = auth.getUid();
                         name = auth.getCurrentUser().getDisplayName();
-                        Log.e("GoogleName", "onComplete: "+auth.getCurrentUser().getDisplayName() );
                         Toast.makeText(LoginActivity.this, "구글 로그인 인증 성공", Toast.LENGTH_SHORT).show();
                         LoginIntent();
                     }
@@ -162,7 +160,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         githubLogin.setOnClickListener(v -> {
             final OAuthProvider.Builder provider = OAuthProvider.newBuilder("github.com");
-            Log.e("nullcheck", "onClick: "+provider.build() );
             provider.addCustomParameter("login", "your-email@gmail.com");
             List<String> scopes =
                     new ArrayList<String>() {
@@ -177,74 +174,59 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 // There's something already here! Finish the sign-in for your user.
                 pendingResultTask
                         .addOnSuccessListener(
-                                new OnSuccessListener<AuthResult>() {
-                                    @Override
-                                    public void onSuccess(AuthResult authResult) {
-                                        Log.e("gitLogin", "onSuccess: ");
-                                        name = authResult.getAdditionalUserInfo().getUsername();
-                                        userId = authResult.getUser().getUid();
-                                        // User is signed in.
-                                        // IdP data available in
-                                        // authResult.getAdditionalUserInfo().getProfile().
-                                        // The OAuth access token can also be retrieved:
-                                        // authResult.getCredential().getAccessToken().
-                                        LoginIntent();
-                                    }
+                                authResult -> {
+                                    Log.e("gitLogin", "onSuccess: ");
+                                    name = authResult.getAdditionalUserInfo().getUsername();
+                                    userId = authResult.getUser().getUid();
+                                    // User is signed in.
+                                    // IdP data available in
+                                    // authResult.getAdditionalUserInfo().getProfile().
+                                    // The OAuth access token can also be retrieved:
+                                    // authResult.getCredential().getAccessToken().
+                                    LoginIntent();
                                 })
                         .addOnFailureListener(
-                                new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                    }
+                                e -> {
                                 });
             }
             else {
                 auth
                         .startActivityForSignInWithProvider(LoginActivity.this, provider.build())
                         .addOnSuccessListener(
-                                new OnSuccessListener<AuthResult>() {
-                                    @Override
-                                    public void onSuccess(AuthResult authResult) {
-                                        Log.e("gitLogin", "onSuccess: ");
-                                        name = authResult.getAdditionalUserInfo().getUsername();
-                                        userId = authResult.getUser().getUid();
-                                        // User is signed in.
-                                        // IdP data available in
-                                        // authResult.getAdditionalUserInfo().getProfile().
-                                        // The OAuth access token can also be retrieved:
-                                        // authResult.getCredential().getAccessToken().
-                                        LoginIntent();
-                                    }
+                                authResult -> {
+                                    Log.e("gitLogin", "onSuccess: ");
+                                    name = authResult.getAdditionalUserInfo().getUsername();
+                                    userId = authResult.getUser().getUid();
+                                    // User is signed in.
+                                    // IdP data available in
+                                    // authResult.getAdditionalUserInfo().getProfile().
+                                    // The OAuth access token can also be retrieved:
+                                    // authResult.getCredential().getAccessToken().
+                                    LoginIntent();
                                 })
                         .addOnFailureListener(
-                                new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.w("gitLogin", "onFailure: ", e);
-                                        auth.getCurrentUser().startActivityForLinkWithProvider(LoginActivity.this, provider.build())
-                                                .addOnSuccessListener(
-                                                        new OnSuccessListener<AuthResult>() {
-                                                            @Override
-                                                            public void onSuccess(AuthResult authResult) {
-                                                                Log.e("linkWith", "onSuccess: " );
-                                                                // GitHub credential is linked to the current user.
-                                                                // IdP data available in
-                                                                // authResult.getAdditionalUserInfo().getProfile().
-                                                                // The OAuth access token can also be retrieved:
-                                                                // authResult.getCredential().getAccessToken().
-                                                                Toast.makeText(LoginActivity.this, "성공" ,Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        })
-                                                .addOnFailureListener(
-                                                        new OnFailureListener() {
-                                                            @Override
-                                                            public void onFailure(@NonNull Exception e) {
-                                                                // Handle failure.
-                                                                Log.w("withProvider", "onFailure: ",e );
-                                                            }
-                                                        });
+                                e -> {
+                                    Log.w("gitLogin", "onFailure: ", e);
+                                    auth.getCurrentUser().startActivityForLinkWithProvider(LoginActivity.this, provider.build())
+                                            .addOnSuccessListener(
+                                                    new OnSuccessListener<AuthResult>() {
+                                                        @Override
+                                                        public void onSuccess(AuthResult authResult) {
+                                                            Log.e("linkWith", "onSuccess: " );
+                                                            // GitHub credential is linked to the current user.
+                                                            // IdP data available in
+                                                            // authResult.getAdditionalUserInfo().getProfile().
+                                                            // The OAuth access token can also be retrieved:
+                                                            // authResult.getCredential().getAccessToken().
+                                                            Toast.makeText(LoginActivity.this, "성공" ,Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    })
+                                            .addOnFailureListener(
+                                                    e1 -> {
+                                                        // Handle failure.
+                                                        Log.w("withProvider", "onFailure: ", e1);
+                                                    });
 
-                                    }
                                 });
             }
         });
@@ -254,12 +236,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
             startActivity(intent);
         });
-        googleLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-            }
+        googleLogin.setOnClickListener(v -> {
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
         });
 
         btn_login.setOnClickListener(v -> {
@@ -291,24 +270,21 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         auth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("FbSignIn", "signInWithCredential:success " + auth.getCurrentUser());
-                            name = auth.getCurrentUser().getDisplayName();
-                            userId = auth.getUid();
-                            LoginIntent();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("FbSignIn", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                        // ...
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("FbSignIn", "signInWithCredential:success " + auth.getCurrentUser());
+                        name = auth.getCurrentUser().getDisplayName();
+                        userId = auth.getUid();
+                        LoginIntent();
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("FbSignIn", "signInWithCredential:failure", task.getException());
+                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
                     }
+
+                    // ...
                 });
     }
     public void LoginIntent(){
