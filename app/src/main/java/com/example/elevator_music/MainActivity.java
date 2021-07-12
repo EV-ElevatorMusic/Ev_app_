@@ -161,6 +161,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             adapter.notifyDataSetChanged();
         });
 
+        recommendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(MainActivity.this, RankingActivity.class);
+                startActivity(intent1);
+            }
+        });
+
         logoutTv.setOnClickListener(v -> {
             LoginActivity.auth.signOut();
             Intent logoutIntent = new Intent(getApplicationContext(), EnterActivity.class);
