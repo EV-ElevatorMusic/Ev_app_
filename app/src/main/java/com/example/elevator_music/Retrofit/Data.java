@@ -3,6 +3,9 @@ package com.example.elevator_music.Retrofit;
 import com.google.gson.annotations.SerializedName;
 
 public class Data {
+    @SerializedName("preview_url")
+    private String preview_url;
+
     @SerializedName("cover_img")
     private String cover_img;
     @SerializedName("artist_name")
@@ -11,6 +14,10 @@ public class Data {
     private String music_name;
     @SerializedName("view")
     private int view;
+
+    public String getPreview_url() {
+        return preview_url;
+    }
 
     public String getCover_img() {
         return cover_img;

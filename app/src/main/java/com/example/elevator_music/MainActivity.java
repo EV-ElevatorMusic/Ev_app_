@@ -41,16 +41,15 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     EditText chatEdit;
-    ImageButton chatSend, openDrawer, hideChatPopupBtn, logoutBtn;
+    ImageButton chatSend;
+    ImageButton openDrawer;
+    ImageButton logoutBtn;
     String all_input, name, email;
     RecyclerView.Adapter adapter;
     RecyclerView rv;
     ArrayList<ChatItem> chatItems = new ArrayList<>();
-    TextView userNameTv, userEmailTv, musicRecommendBtn, lifeChatBtn, recommendBtn;
-    Boolean isLifeChat = false;
-    Boolean isHidden = false;
-    ConstraintLayout chatPopupCl;
-
+    TextView userNameTv;
+    TextView userEmailTv;
 
 
     @Override

@@ -37,7 +37,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
@@ -61,14 +61,14 @@
 
             </LinearLayout>
 
-            <Button
+            <ImageButton
                 android:id="@+id/ranking_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:src="@drawable/ic_baseline_play_circle_filled_24"
                 android:backgroundTint="#3F51B5"
                 android:layout_margin="16dp"
-                android:text="바로듣기"
                 android:textSize="12sp"
                 android:textColor="#fff"
                 android:fontFamily="@font/nanumgothic"

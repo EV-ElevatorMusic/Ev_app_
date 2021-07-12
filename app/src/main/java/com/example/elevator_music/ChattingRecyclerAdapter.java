@@ -32,9 +32,9 @@ import static android.content.ContentValues.TAG;
 
 public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     MediaPlayer mediaPlayer;
-    boolean isPaused = true;
+    static boolean isPaused = true;
     boolean isFirst = true;
-    boolean isReleased = false;
+    static boolean isReleased = false;
     int music_position = 0;
 
     public ChattingRecyclerAdapter(ArrayList<ChatItem> chatItems, Context context) {
@@ -122,7 +122,7 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             Log.e(TAG, "onBindViewHolder: " + chatItems.get(position).preview_url);
 
             viewHolder2.musicPlayBtn.setOnClickListener(v -> {
-                if (isFirst) {
+                if (isFirst && isPaused) {
                     if (mediaPlayer != null) {
                         mediaPlayer.release();
                         isReleased = true;
@@ -132,6 +132,7 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                         mediaPlayer.setDataSource(chatItems.get(position).preview_url);
                         mediaPlayer.prepare();
                         mediaPlayer.start();
+                        viewHolder2.musicPlayBtn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
                         isPaused = false;
                         isFirst = false;
                     } catch (IOException e) {
@@ -141,9 +142,11 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                     isPaused = true;
                     music_position = mediaPlayer.getCurrentPosition();
                     mediaPlayer.pause();
+                    viewHolder2.musicPlayBtn.setImageResource(R.drawable.ic_baseline_play_circle_filled_24);
 
                 } else if (mediaPlayer != null && isPaused) {
                     mediaPlayer.start();
+                    viewHolder2.musicPlayBtn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
                     mediaPlayer.seekTo(music_position);
                     isPaused = false;
                 }
