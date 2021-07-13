@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/music_body"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@drawable/music_chat"
@@ -46,7 +47,7 @@
             android:text="DAY6(데이식스)"
             android:textSize="11sp"
             android:textColor="#646464"
-            android:fontFamily="@font/nanumgothiclight"
+            android:fontFamily="@font/nanumgothic"
             app:layout_constraintTop_toBottomOf="@+id/cMusicTitle"
             app:layout_constraintLeft_toRightOf="@+id/cMusicImg"
             android:layout_marginLeft="8dp"
@@ -75,5 +76,16 @@
 
         
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/music_like_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_outline_thumb_up_24"
+        android:background="#00000000"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/music_body"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/music_body"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

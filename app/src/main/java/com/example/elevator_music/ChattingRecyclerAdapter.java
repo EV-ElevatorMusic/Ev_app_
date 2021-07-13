@@ -1,7 +1,9 @@
 package com.example.elevator_music;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
-
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
@@ -27,6 +27,7 @@ import com.bumptech.glide.request.target.Target;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static android.content.ContentValues.TAG;
 
@@ -36,14 +37,13 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     boolean isFirst = true;
     static boolean isReleased = false;
     int music_position = 0;
+    Context context;
+    ArrayList<ChatItem> chatItems;
 
     public ChattingRecyclerAdapter(ArrayList<ChatItem> chatItems, Context context) {
         this.chatItems = chatItems;
         this.context = context;
     }
-
-    Context context;
-    ArrayList<ChatItem> chatItems;
 
     class ViewHolder0 extends RecyclerView.ViewHolder {
         TextView sentBody;
@@ -67,10 +67,11 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     class ViewHolder2 extends RecyclerView.ViewHolder {
         TextView cMusicTitle, cMusicArtist;
         ImageView cMusicImg;
-        ImageButton musicPlayBtn;
+        ImageButton musicPlayBtn, musicLikeBtn;
 
         ViewHolder2(@NonNull View itemView) {
             super(itemView);
+            musicLikeBtn = itemView.findViewById(R.id.music_like_btn);
             musicPlayBtn = itemView.findViewById(R.id.music_play_btn);
             cMusicTitle = itemView.findViewById(R.id.cMusicTitle);
             cMusicArtist = itemView.findViewById(R.id.cMusicArtist);
@@ -95,6 +96,8 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+
         if (holder.getItemViewType() == 0) {
             ViewHolder0 viewHolder0 = (ViewHolder0) holder;
             viewHolder0.sentBody.setText(chatItems.get(position).text);
@@ -150,6 +153,48 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                     mediaPlayer.seekTo(music_position);
                     isPaused = false;
                 }
+            });
+            AtomicBoolean isLiked = new AtomicBoolean(sharedPreferences.getBoolean(chatItems.get(position).music_name, false));
+            if (!isLiked.get()) {
+                viewHolder2.musicLikeBtn.setImageResource(R.drawable.ic_outline_thumb_up_24);
+                Log.d(TAG, "onBindViewHolder: " + false);
+            }
+            else {
+                viewHolder2.musicLikeBtn.setImageResource(R.drawable.ic_baseline_thumb_up_24);
+                Log.d(TAG, "onBindViewHolder: " + true);
+            }
+
+            viewHolder2.musicLikeBtn.setOnClickListener(v -> {
+                isLiked.set(sharedPreferences.getBoolean(chatItems.get(position).music_name, false));
+                RequestQueue queue = Volley.newRequestQueue(context.getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                StringRequest stringRequest;
+
+
+                if (!isLiked.get()){
+                    String url = "http://34.64.94.120/music/like?title="+chatItems.get(position).music_name;
+                    Log.d(TAG, "onBindViewHolder: isLikedFalse");
+                    stringRequest = new StringRequest(Request.Method.GET, url,
+                            response -> {
+                                viewHolder2.musicLikeBtn.setImageResource(R.drawable.ic_baseline_thumb_up_24);
+                                editor.putBoolean(chatItems.get(position).music_name, true);
+                                editor.apply();
+                            }, error -> {
+                        Toast.makeText(context, "좋아요 실패", Toast.LENGTH_SHORT).show();
+                    });
+
+                }else{
+                    String url = "http://34.64.94.120/music/cancel_like?title="+chatItems.get(position).music_name;
+
+                    stringRequest = new StringRequest(Request.Method.GET, url,
+                            response -> {
+                                viewHolder2.musicLikeBtn.setImageResource(R.drawable.ic_outline_thumb_up_24);
+                                editor.putBoolean(chatItems.get(position).music_name, false);
+                                editor.apply();
+                            }, error -> Toast.makeText(context, "좋아요 취소 실패", Toast.LENGTH_SHORT).show());
+                }
+
+                queue.add(stringRequest);
             });
 
         }
