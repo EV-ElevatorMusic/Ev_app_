@@ -288,6 +288,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         intent.putExtra("userId", auth.getCurrentUser().getUid());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
         finish();
     }
 
