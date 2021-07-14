@@ -117,9 +117,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     String text = chatEdit.getText().toString();
                     chatItems.add(new ChatItem(0, text));
                     chatEdit.setText("");
-                    all_input += text;
 
-                    String _uri = "/chatbot/?comment=" + all_input;
+                    String _uri = "/chatbot/?comment=" + text;
 
                     NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
                     networkTask.execute();
