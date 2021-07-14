@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumgothicbold"
                 android:gravity="center"
-                android:text="이브"
+                android:text="EVE"
                 android:textColor="#000"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
