@@ -1,7 +1,9 @@
 package com.example.elevator_music;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -175,7 +178,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            TextView textView = new TextView(getApplicationContext());
+            textView.setText("종료하시겠습니까?");
+            textView.setTextColor(Color.BLACK);
+            textView.setTextSize(20F);
+            textView.setPadding(40, 30, 20, 30);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCustomTitle(textView)
+                    .setNegativeButton("아니요", (dialog, which) -> super.onBackPressed())
+                    .setPositiveButton("네", ((dialog, which) -> finish()))
+                    .create().show();
         }
     }
 
@@ -302,13 +314,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
-
-    void startDrawerIntent(Intent intent){
-        intent.putExtra("name", name);
-        intent.putExtra("email", email);
-        startActivity(intent);
-    }
-
 
 
 }
