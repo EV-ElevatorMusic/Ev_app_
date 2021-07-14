@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         fbLogin = findViewById(R.id.loginFb);
         googleLogin = findViewById(R.id.loginGoogle);
         et_id = findViewById(R.id.loginId);
-        et_password = findViewById(R.id.loginPwd);
+        et_password = findViewById(R.id.loginPassword);
         btn_login = findViewById(R.id.loginEnter);
         loginText = findViewById(R.id.loginText);
         githubLogin=findViewById(R.id.loginGithub);
