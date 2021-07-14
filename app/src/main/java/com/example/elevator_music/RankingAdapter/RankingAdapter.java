@@ -41,7 +41,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ItemView
     @Override
     public RankingAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ranking, parent, false);
-        return new RankingAdapter.ItemViewHolder(v);
+        return new ItemViewHolder(v);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ItemView
         return arrayList.size();
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView ranking_title, ranking_artist;
         ImageView ranking_Iv;
         ImageButton ranking_btn;

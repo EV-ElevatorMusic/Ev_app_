@@ -15,6 +15,10 @@ public class Data {
     @SerializedName("view")
     private int view;
 
+    public void setPreview_url(String preview_url) {
+        this.preview_url = preview_url;
+    }
+
     public String getPreview_url() {
         return preview_url;
     }

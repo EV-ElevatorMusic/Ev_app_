@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.example.elevator_music.Retrofit.Data;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -169,15 +170,28 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 RequestQueue queue = Volley.newRequestQueue(context.getApplicationContext());
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 StringRequest stringRequest;
-
+                Gson gson = new Gson();
+                Data data = new Data();
+                ChatItem chatItem = chatItems.get(position);
+                data.setArtist_name(chatItem.artist_name);
+                data.setCover_img(chatItem.cover_img);
+                data.setMusic_name(chatItem.music_name);
+                data.setPreview_url(chatItem.preview_url);
 
                 if (!isLiked.get()){
                     String url = "http://34.64.94.120/music/like?title="+chatItems.get(position).music_name;
                     Log.d(TAG, "onBindViewHolder: isLikedFalse");
                     stringRequest = new StringRequest(Request.Method.GET, url,
                             response -> {
-                                Gson gson = new Gson();
-                                String json = gson.toJson(MainActivity.likedList.add(chatItems.get(position)));
+                                for (int i = 0; i< MainActivity.likedList.size(); i++){
+                                    Data j = MainActivity.likedList.get(i);
+                                    if (j.getMusic_name().equals(chatItem.music_name)){
+                                        MainActivity.likedList.remove(i);
+                                        break;
+                                    }
+                                }
+                                MainActivity.likedList.add(data);
+                                String json = gson.toJson(MainActivity.likedList);
                                 viewHolder2.musicLikeBtn.setImageResource(R.drawable.ic_baseline_thumb_up_24);
                                 editor.putBoolean(chatItems.get(position).music_name, true);
                                 editor.putString("likedList", json);
@@ -191,8 +205,17 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
                     stringRequest = new StringRequest(Request.Method.GET, url,
                             response -> {
+                                for (int i = 0; i< MainActivity.likedList.size(); i++){
+                                    Data j = MainActivity.likedList.get(i);
+                                    if (j.getMusic_name().equals(chatItem.music_name)){
+                                        MainActivity.likedList.remove(i);
+                                        break;
+                                    }
+                                }
+                                String json = gson.toJson(MainActivity.likedList);
                                 viewHolder2.musicLikeBtn.setImageResource(R.drawable.ic_outline_thumb_up_24);
                                 editor.putBoolean(chatItems.get(position).music_name, false);
+                                editor.putString("likedList", json);
                                 editor.apply();
                             }, error -> Toast.makeText(context, "좋아요 취소 실패", Toast.LENGTH_SHORT).show());
                 }
