@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,7 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<ChatItem> chatItems = new ArrayList<>();
     TextView userNameTv;
     TextView userEmailTv;
+    NestedScrollView scrollView;
     static ArrayList<Data> likedList;
+    Runnable runnable;
 
 
     @Override
@@ -67,12 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         chatSend = findViewById(R.id.chatSend);
         rv = findViewById(R.id.recyclerChat);
         openDrawer = findViewById(R.id.open_drawer);
-
-        adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        rv.setLayoutManager(linearLayoutManager);
-        rv.setAdapter(adapter);
+        scrollView = findViewById(R.id.rv_sv);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -82,6 +80,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userEmailTv = nav_header_view.findViewById(R.id.drawer_user_email);
         userNameTv = nav_header_view.findViewById(R.id.drawer_user_name);
         logoutBtn = nav_header_view.findViewById(R.id.log_out_btn);
+
+        adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        rv.setLayoutManager(linearLayoutManager);
+        rv.setAdapter(adapter);
+
+        runnable= () -> scrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();
@@ -304,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
                 adapter.notifyItemInserted(chatItems.size());
+                scrollView.post(runnable);
             }
         }
     }
