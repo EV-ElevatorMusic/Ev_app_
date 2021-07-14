@@ -20,7 +20,7 @@ public class SplashActivity extends Activity {
 
     private class splashhandler implements Runnable{
         public void run(){
-            startActivity(new Intent(getApplication(), EnterActivity.class));
+            startActivity(new Intent(getApplication(), ViewpagerActivity.class));
             SplashActivity.this.finish();
         }
     }

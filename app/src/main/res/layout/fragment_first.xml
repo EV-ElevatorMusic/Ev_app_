@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Viewpager.FirstFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:src="@drawable/chatting_view"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EVE와 채팅하기"
+                android:textSize="24sp"
+                android:fontFamily="@font/nanumgothicbold"
+                android:textColor="#000"
+                android:layout_margin="16dp"/>
+
+            <TextView
+                android:gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="인공지능 챗봇인 EVE와 대화하면서 위로도 받고 노래추천도 받아보세요."
+                android:textSize="16sp"
+                android:fontFamily="@font/nanumgothic"
+                android:textColor="#2E2E2E" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
