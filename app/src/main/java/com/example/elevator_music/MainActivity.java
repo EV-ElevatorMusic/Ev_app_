@@ -178,14 +178,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            TextView textView = new TextView(getApplicationContext());
-            textView.setText("종료하시겠습니까?");
-            textView.setTextColor(Color.BLACK);
-            textView.setTextSize(20F);
-            textView.setPadding(40, 30, 20, 30);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCustomTitle(textView)
-                    .setNegativeButton("아니요", (dialog, which) -> super.onBackPressed())
+            builder.setTitle("종료하시겠습니까?")
+                    .setNegativeButton("아니요", null)
                     .setPositiveButton("네", ((dialog, which) -> finish()))
                     .create().show();
         }
