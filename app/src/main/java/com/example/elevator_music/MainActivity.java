@@ -181,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         Intent intent;
@@ -235,9 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 return page;
 
-            } catch (MalformedURLException e) { // for URL.
-                e.printStackTrace();
-            } catch (IOException e) { // for openConnection().
+            } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 if (urlConn != null)
@@ -266,13 +263,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String result;
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
             result = requestHttpURLConnection.request(url, values);
-            return result; // 결과가 여기에 담깁니다. 아래 onPostExecute()의 파라미터로 전달됩니다.
+            return result;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            // 통신이 완료되면 호출됩니다.
-            // 결과에 따른 UI 수정 등은 여기서 합니다.
             if(result!=null){
                 JsonParser parser = new JsonParser();
                 Object object = parser.parse(result);
