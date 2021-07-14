@@ -153,8 +153,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="84dp"
         android:src="@drawable/ic_github_10"
-        android:background="#00FFFFFF"
-        android:visibility="invisible"/>
+        android:background="#00FFFFFF" />
 
     <ImageButton
         android:background="@drawable/ic_facebook_01"
@@ -165,8 +164,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loginEnter"
         app:layout_constraintLeft_toLeftOf="@+id/loginGithub"
         app:layout_constraintRight_toRightOf="@+id/loginGoogle"
-        android:elevation="10dp"
-        android:visibility="invisible"/>
+        android:elevation="10dp" />
 
     <ImageButton
         android:id="@+id/loginGoogle"
@@ -177,8 +175,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="84dp"
         android:src="@drawable/ic_google_08"
-        android:background="#00FFFFFF"
-        android:visibility="invisible"/>
+        android:background="#00FFFFFF" />
 
 
 
