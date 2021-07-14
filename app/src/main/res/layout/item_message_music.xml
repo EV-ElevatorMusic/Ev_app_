@@ -2,18 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/music_body"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:background="@drawable/music_chat"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="80dp"
         android:layout_marginTop="8dp">
 
 
@@ -37,8 +36,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/cMusicImg"
             android:textColor="#646464"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0" />
 
         <TextView
             android:id="@+id/cMusicArtist"
@@ -50,8 +52,11 @@
             android:fontFamily="@font/nanumgothic"
             app:layout_constraintTop_toBottomOf="@+id/cMusicTitle"
             app:layout_constraintLeft_toRightOf="@+id/cMusicImg"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0"/>
 
 <!--        <ImageView-->
 <!--            android:layout_width="13dp"-->
@@ -71,7 +76,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/cMusicTitle"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="#fff"/>
 
         
@@ -86,6 +92,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/music_body"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/music_body"/>
+        app:layout_constraintLeft_toRightOf="@id/music_body"
+        app:layout_constraintHorizontal_bias="0.2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

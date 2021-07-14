@@ -61,9 +61,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(adapter);
-        ((LinearLayoutManager)rv.getLayoutManager()).setStackFromEnd(true);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -206,7 +207,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if (urlConn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     Log.e("responseCode", "request: " + urlConn.getResponseCode() + urlConn.getResponseMessage()) ;
-                    Toast.makeText(MainActivity.this, urlConn.getRequestMethod(), Toast.LENGTH_SHORT).show();
                     return null;
                 }
                 Log.e("responseCode", "request: " + urlConn.getResponseCode() + urlConn.getResponseMessage()) ;
@@ -280,16 +280,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     String preview_url = jsonObject.get("preview_url")+"";
                     preview_url = preview_url.replaceAll("\"", "");
 
-                    adapter.notifyDataSetChanged();
+                    chatItems.add(new ChatItem(1, "이런 노래는 어떠신가요?"));
                     chatItems.add(new ChatItem(2, artist_name, cover_img, music_name, preview_url));
                 }else{
                     String comment = jsonObject.get("chat")+"";
                     comment = comment.replaceAll("\"", "");
                     Log.e("tag", "onPostExecute: "+ jsonObject.get("responsetype") );
-                    adapter.notifyDataSetChanged();
                     chatItems.add(new ChatItem(1, comment));
+
                 }
-                adapter.notifyDataSetChanged();
+                adapter.notifyItemInserted(chatItems.size());
             }
         }
     }
