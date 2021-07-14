@@ -1,11 +1,10 @@
 package com.example.elevator_music;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class EnterActivity extends AppCompatActivity {
     Button enterButton;
@@ -18,12 +17,10 @@ public class EnterActivity extends AppCompatActivity {
         enterButton = findViewById(R.id.enterButton);
 
 
-        enterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EnterActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+        enterButton.setOnClickListener(v -> {
+            Intent intent = new Intent(EnterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

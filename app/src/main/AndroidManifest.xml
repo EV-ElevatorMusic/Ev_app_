@@ -16,7 +16,6 @@
         android:usesCleartextTraffic="true" >
         <activity android:name=".LikedMusicActivity" >
         </activity>
-        <activity android:name=".SettingActivity" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"

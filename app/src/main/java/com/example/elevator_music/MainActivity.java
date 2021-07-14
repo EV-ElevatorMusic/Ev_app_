@@ -186,21 +186,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Intent intent;
 
-        if(id == R.id.setting){
-            intent = new Intent(this, SettingActivity.class);
-            intent.putExtra("name", name);
-            intent.putExtra("email", email);
-            startActivity(intent);
-        }
 
-        else if (id == R.id.mRanking) {
+        if (id == R.id.mRanking) {
             intent = new Intent(this, RankingActivity.class);
-            startActivity(intent);
         }
         else{
             intent = new Intent(this, LikedMusicActivity.class);
-            startActivity(intent);
         }
+        startActivity(intent);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);

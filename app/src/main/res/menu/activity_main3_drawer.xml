@@ -11,9 +11,6 @@
         <item android:id="@+id/liked_list"
             android:title="좋아요 누른 음악"
             app:showAsAction="ifRoom"/>
-        <item android:id="@+id/setting"
-            android:title="설정"
-            app:showAsAction="ifRoom" />
     </group>
 
 </menu>
