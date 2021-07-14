@@ -1,9 +1,11 @@
 package com.example.elevator_music;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -22,13 +24,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.elevator_music.Retrofit.Data;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<ChatItem> chatItems = new ArrayList<>();
     TextView userNameTv;
     TextView userEmailTv;
+    static ArrayList<Data> likedList;
 
 
     @Override
@@ -57,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         chatSend = findViewById(R.id.chatSend);
         rv = findViewById(R.id.recyclerChat);
         openDrawer = findViewById(R.id.open_drawer);
-
-
 
         adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -74,6 +79,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userEmailTv = nav_header_view.findViewById(R.id.drawer_user_email);
         userNameTv = nav_header_view.findViewById(R.id.drawer_user_name);
         logoutBtn = nav_header_view.findViewById(R.id.log_out_btn);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString("likedList", "");
+        if (json.equals("")){
+            likedList = new ArrayList<>();
+        }else{
+            Type type = new TypeToken<ArrayList<Data>>() {
+            }.getType();
+            likedList = gson.fromJson(json, type);
+        }
+
 
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
@@ -178,6 +195,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         else if (id == R.id.mRanking) {
             intent = new Intent(this, RankingActivity.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(this, LikedMusicActivity.class);
             startActivity(intent);
         }
 
