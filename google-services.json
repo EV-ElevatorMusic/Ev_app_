@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "821739973863-84m9lh2ot16qe5btdfj64dbc2ib8qpq5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.elevator_music",
+            "certificate_hash": "763a1f07a44aed213280dda210311ddc0af6df83"
+          }
+        },
+        {
           "client_id": "821739973863-btd2jjp4dnfaed3opiep8etfm4vruf89.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
