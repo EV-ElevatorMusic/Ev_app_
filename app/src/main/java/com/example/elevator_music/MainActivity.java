@@ -135,8 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (text.equals("")) Toast.makeText(this, "대화를 입력해주세요", Toast.LENGTH_SHORT).show();
 
             else{
-                all_input = all_input + text;
-                String _uri = "/chatbot/?comment=" + all_input;
+                String _uri = "/chatbot/?comment=" + text;
 
                 chatItems.add(new ChatItem(0, text));
                 adapter.notifyDataSetChanged();
