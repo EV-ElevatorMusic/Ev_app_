@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -122,7 +123,6 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                     .into(viewHolder2.cMusicImg);
             viewHolder2.cMusicArtist.setText(chatItems.get(position).artist_name);
             viewHolder2.cMusicTitle.setText(chatItems.get(position).music_name);
-            Log.e(TAG, "onBindViewHolder: " + chatItems.get(position).preview_url);
 
             viewHolder2.musicPlayBtn.setOnClickListener(v -> {
                 if (isFirst && isPaused) {
@@ -176,8 +176,11 @@ public class ChattingRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                     Log.d(TAG, "onBindViewHolder: isLikedFalse");
                     stringRequest = new StringRequest(Request.Method.GET, url,
                             response -> {
+                                Gson gson = new Gson();
+                                String json = gson.toJson(MainActivity.likedList.add(chatItems.get(position)));
                                 viewHolder2.musicLikeBtn.setImageResource(R.drawable.ic_baseline_thumb_up_24);
                                 editor.putBoolean(chatItems.get(position).music_name, true);
+                                editor.putString("likedList", json);
                                 editor.apply();
                             }, error -> {
                         Toast.makeText(context, "좋아요 실패", Toast.LENGTH_SHORT).show();
