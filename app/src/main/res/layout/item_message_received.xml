@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="2dp"
     android:layout_marginTop="8dp">
@@ -17,11 +17,14 @@
         android:background="@drawable/chat_example"
         android:paddingHorizontal="12dp"
         android:paddingVertical="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:textSize="14dp"
         android:fontFamily="@font/nanumgothic"
         android:textColor="#fff"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="wonwoo is the best"/>
-</LinearLayout>
+        android:text="wonwoo is the best"
+        android:maxLines="7"
+        android:maxWidth="170dp"
+        app:layout_constraintWidth_percent="0.4"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
