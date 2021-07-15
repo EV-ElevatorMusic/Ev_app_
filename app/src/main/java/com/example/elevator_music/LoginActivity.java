@@ -141,7 +141,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                 @Override
                 public void onCancel() {
-                    Log.e("FbLogin", "onCancel: cancel" );
+                    Log.d("FbLogin", "onCancel: cancel" );
                 }
 
                 @Override
@@ -239,12 +239,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 auth.signInWithEmailAndPassword(et_id.getText().toString(), et_password.getText().toString())
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Log.e("Login", "onComplete: Success" );
                                 Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                                 LoginIntent();
                             }
                             else{
-                                Log.e("Login", "onComplete: Fail");
                                 Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -259,7 +257,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     }
     private void handleFacebookAccessToken(final AccessToken token) {
-        Log.e("handleFacebook", "handleFacebookAccessToken:" + token );
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         auth.signInWithCredential(credential)

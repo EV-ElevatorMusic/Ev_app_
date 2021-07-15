@@ -18,13 +18,12 @@
         android:paddingHorizontal="12dp"
         android:paddingVertical="8dp"
         android:layout_marginStart="8dp"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:fontFamily="@font/nanumgothic"
         android:textColor="#fff"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="wonwoo is the best"
         android:maxLines="7"
-        android:maxWidth="170dp"
-        app:layout_constraintWidth_percent="0.4"/>
+        android:maxWidth="170dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
