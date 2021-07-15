@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.elevator_music"
-    android:versionName="TODO" >
+    android:versionName="TODO">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,13 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true" >
-        <activity android:name=".LikedMusicActivity" >
-        </activity>
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ViewpagerActivity"></activity>
+        <activity android:name=".LikedMusicActivity"></activity>
+        <activity android:name=".SettingActivity" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
