@@ -1,7 +1,9 @@
 package com.example.elevator_music;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,8 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,7 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<ChatItem> chatItems = new ArrayList<>();
     TextView userNameTv;
     TextView userEmailTv;
+    NestedScrollView scrollView;
     static ArrayList<Data> likedList;
+    Runnable runnable;
 
 
     @Override
@@ -64,12 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         chatSend = findViewById(R.id.chatSend);
         rv = findViewById(R.id.recyclerChat);
         openDrawer = findViewById(R.id.open_drawer);
-
-        adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        rv.setLayoutManager(linearLayoutManager);
-        rv.setAdapter(adapter);
+        scrollView = findViewById(R.id.rv_sv);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -79,6 +80,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userEmailTv = nav_header_view.findViewById(R.id.drawer_user_email);
         userNameTv = nav_header_view.findViewById(R.id.drawer_user_name);
         logoutBtn = nav_header_view.findViewById(R.id.log_out_btn);
+
+        adapter = new ChattingRecyclerAdapter(chatItems, getApplicationContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        rv.setLayoutManager(linearLayoutManager);
+        rv.setAdapter(adapter);
+
+        runnable= () -> scrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();
@@ -114,9 +123,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     String text = chatEdit.getText().toString();
                     chatItems.add(new ChatItem(0, text));
                     chatEdit.setText("");
-                    all_input += text;
 
-                    String _uri = "/chatbot/?comment=" + all_input;
+                    String _uri = "/chatbot/?comment=" + text;
 
                     NetworkTask networkTask = new NetworkTask("http://34.64.94.120/", _uri);
                     networkTask.execute();
@@ -132,8 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (text.equals("")) Toast.makeText(this, "대화를 입력해주세요", Toast.LENGTH_SHORT).show();
 
             else{
-                all_input = all_input + text;
-                String _uri = "/chatbot/?comment=" + all_input;
+                String _uri = "/chatbot/?comment=" + text;
 
                 chatItems.add(new ChatItem(0, text));
                 adapter.notifyDataSetChanged();
@@ -175,32 +182,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("종료하시겠습니까?")
+                    .setNegativeButton("아니요", null)
+                    .setPositiveButton("네", ((dialog, which) -> finish()))
+                    .create().show();
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         Intent intent;
 
-        if(id == R.id.setting){
-            intent = new Intent(this, SettingActivity.class);
-            intent.putExtra("name", name);
-            intent.putExtra("email", email);
-            startActivity(intent);
-        }
 
-        else if (id == R.id.mRanking) {
+        if (id == R.id.mRanking) {
             intent = new Intent(this, RankingActivity.class);
-            startActivity(intent);
         }
         else{
             intent = new Intent(this, LikedMusicActivity.class);
-            startActivity(intent);
         }
+        startActivity(intent);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
@@ -242,9 +245,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 return page;
 
-            } catch (MalformedURLException e) { // for URL.
-                e.printStackTrace();
-            } catch (IOException e) { // for openConnection().
+            } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 if (urlConn != null)
@@ -273,13 +274,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String result;
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
             result = requestHttpURLConnection.request(url, values);
-            return result; // 결과가 여기에 담깁니다. 아래 onPostExecute()의 파라미터로 전달됩니다.
+            return result;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            // 통신이 완료되면 호출됩니다.
-            // 결과에 따른 UI 수정 등은 여기서 합니다.
             if(result!=null){
                 JsonParser parser = new JsonParser();
                 Object object = parser.parse(result);
@@ -311,16 +310,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
                 adapter.notifyItemInserted(chatItems.size());
+                scrollView.post(runnable);
             }
         }
     }
-
-    void startDrawerIntent(Intent intent){
-        intent.putExtra("name", name);
-        intent.putExtra("email", email);
-        startActivity(intent);
-    }
-
 
 
 }

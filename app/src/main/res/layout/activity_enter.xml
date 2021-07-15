@@ -41,7 +41,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="32dp"
         android:text="로그인 화면으로 가기"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textColor="#fff"
         android:fontFamily="@font/nanumgothic"
         style="?materialButtonStyle"

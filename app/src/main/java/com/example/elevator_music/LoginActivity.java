@@ -1,17 +1,16 @@
 package com.example.elevator_music;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -19,7 +18,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.LoggingBehavior;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -29,21 +27,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.OAuthProvider;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -128,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         fbLogin = findViewById(R.id.loginFb);
         googleLogin = findViewById(R.id.loginGoogle);
         et_id = findViewById(R.id.loginId);
-        et_password = findViewById(R.id.loginPwd);
+        et_password = findViewById(R.id.loginPassword);
         btn_login = findViewById(R.id.loginEnter);
         loginText = findViewById(R.id.loginText);
         githubLogin=findViewById(R.id.loginGithub);
@@ -148,7 +141,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                 @Override
                 public void onCancel() {
-                    Log.e("FbLogin", "onCancel: cancel" );
+                    Log.d("FbLogin", "onCancel: cancel" );
                 }
 
                 @Override
@@ -246,12 +239,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 auth.signInWithEmailAndPassword(et_id.getText().toString(), et_password.getText().toString())
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Log.e("Login", "onComplete: Success" );
                                 Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                                 LoginIntent();
                             }
                             else{
-                                Log.e("Login", "onComplete: Fail");
                                 Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -266,7 +257,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     }
     private void handleFacebookAccessToken(final AccessToken token) {
-        Log.e("handleFacebook", "handleFacebookAccessToken:" + token );
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         auth.signInWithCredential(credential)
@@ -295,6 +285,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         intent.putExtra("userId", auth.getCurrentUser().getUid());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
         finish();
     }
 

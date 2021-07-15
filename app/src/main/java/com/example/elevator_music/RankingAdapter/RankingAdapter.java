@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,11 +27,12 @@ import static android.content.ContentValues.TAG;
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ItemViewHolder>{
     ArrayList<Data> arrayList;
     Context context;
-    MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer;
     static boolean isPaused = true;
-    boolean isFirst = true;
+    static boolean isFirst = true;
     static boolean isReleased = false;
     int music_position = 0;
+    static String musicName = "";
 
     public RankingAdapter(ArrayList<Data> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -59,6 +61,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ItemView
                     isReleased = true;
                 }
                 try {
+                    musicName = arrayList.get(position).getMusic_name();
                     mediaPlayer = new MediaPlayer();
                     mediaPlayer.setDataSource(arrayList.get(position).getPreview_url());
                     mediaPlayer.prepare();
@@ -70,16 +73,38 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ItemView
                     e.printStackTrace();
                 }
             } else if (mediaPlayer != null && !isPaused && !isReleased) {
-                isPaused = true;
-                music_position = mediaPlayer.getCurrentPosition();
-                mediaPlayer.pause();
-                holder.ranking_btn.setImageResource(R.drawable.ic_baseline_play_circle_filled_24);
+                if (!musicName.equals(arrayList.get(position).getMusic_name())){
+                    Toast.makeText(context, "재생하고 있는 음악을 멈춰주세요!", Toast.LENGTH_SHORT).show();
+                }else{
+                    isPaused = true;
+                    music_position = mediaPlayer.getCurrentPosition();
+                    mediaPlayer.pause();
+                    holder.ranking_btn.setImageResource(R.drawable.ic_baseline_play_circle_filled_24);
+                }
 
             } else if (mediaPlayer != null && isPaused) {
-                mediaPlayer.start();
-                holder.ranking_btn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
-                mediaPlayer.seekTo(music_position);
-                isPaused = false;
+                if (!musicName.equals(arrayList.get(position).getMusic_name())){
+                    try {
+                        musicName = arrayList.get(position).getMusic_name();
+                        mediaPlayer = new MediaPlayer();
+                        mediaPlayer.setDataSource(arrayList.get(position).getPreview_url());
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+                        holder.ranking_btn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
+                        isPaused = false;
+                        isFirst = false;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    mediaPlayer.start();
+                    holder.ranking_btn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
+                    mediaPlayer.seekTo(music_position);
+                    isPaused = false;
+                }
+            }else {
+                Toast.makeText(context, "재생하고 있는 음악을 멈춰주세요!", Toast.LENGTH_SHORT).show();
             }
         });
 
