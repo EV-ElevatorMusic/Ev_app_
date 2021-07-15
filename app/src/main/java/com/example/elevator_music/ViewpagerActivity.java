@@ -57,20 +57,17 @@ public class ViewpagerActivity extends AppCompatActivity {
         final float pageMargin= getResources().getDimensionPixelOffset(R.dimen.pageMargin);
         final float pageOffset = getResources().getDimensionPixelOffset(R.dimen.offset);
 
-        pager.setPageTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull @NotNull View page, float position) {
-                float myOffset = position * -(2 * pageOffset + pageMargin);
+        pager.setPageTransformer((page, position) -> {
+            float myOffset = position * -(2 * pageOffset + pageMargin);
 
-                if(pager.getOrientation() == ViewPager2.ORIENTATION_HORIZONTAL){
-                    if(ViewCompat.getLayoutDirection(pager) == ViewCompat.LAYOUT_DIRECTION_RTL){
-                        page.setTranslationX(-myOffset);
-                    }else{
-                        page.setTranslationX(myOffset);
-                    }
+            if(pager.getOrientation() == ViewPager2.ORIENTATION_HORIZONTAL){
+                if(ViewCompat.getLayoutDirection(pager) == ViewCompat.LAYOUT_DIRECTION_RTL){
+                    page.setTranslationX(-myOffset);
                 }else{
-                    page.setTranslationY(myOffset);
+                    page.setTranslationX(myOffset);
                 }
+            }else{
+                page.setTranslationY(myOffset);
             }
         });
     }

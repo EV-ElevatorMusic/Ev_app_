@@ -42,7 +42,7 @@
                 android:layout_marginRight="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="좋아하는 노래를 편하게 들어보세요. 멘트 구리지... 고쳐줘...."
+                android:text="좋아하는 노래를 편하게 들어보세요."
                 android:textSize="16sp"
                 android:fontFamily="@font/nanumgothic"
                 android:textColor="#2E2E2E"/>
